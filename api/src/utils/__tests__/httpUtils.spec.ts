@@ -10,4 +10,9 @@ describe('http utils', () => {
     expect(HttpStatus.NOT_FOUND).toBe(404);
   })
 
+
+  it('should be forbidden', () => {
+    expect(HttpStatus.FORBIDDEN).toBe(401);
+  })
+
 });
