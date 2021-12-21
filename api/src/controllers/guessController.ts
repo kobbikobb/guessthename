@@ -3,7 +3,7 @@ import { HttpStatus } from '../utils/httpUtils';
 
 interface IGuess {
   userId: String;
-  value: String;
+  name: String;
 }
 
 // TODO: Read from DB
@@ -11,7 +11,7 @@ const guesses = Array<IGuess>();
 
 const getGuesses = async (req: Request, res: Response) => {
   return res.status(HttpStatus.OK).json({
-    guesses
+    results: guesses
   });
 };
 
