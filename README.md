@@ -8,6 +8,6 @@ Guess the name of a child or pet to be named.
   - Add the first unit test - [x]
   - Add rest api test (supertest) - [ ]
 - Continuous Integration - CI
-  - Enable CI (GitHub Actions) - [ ]
+  - Enable CI (GitHub Actions) - [x]
 
 
