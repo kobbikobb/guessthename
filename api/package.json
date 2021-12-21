@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon src/server.ts",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "prettier-check": "prettier --config .prettierrc 'src/**/*.ts' --check",
+    "prettier-check": "prettier --config .prettierrc 'src/**/*.ts' --list-different",
     "build": "rm -rf dest/ && prettier --write 'src/**/*.ts' && tsc",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
