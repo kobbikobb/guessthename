@@ -2,12 +2,15 @@ import express, { Express } from 'express';
 import morgan from 'morgan';
 import { HttpStatus } from './utils/httpUtils';
 import guessRoutes from './routes/guessRoutes';
+import cors from "cors";
 
 const app: Express = express();
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cors());
+app.options('*', cors);
 
 // Cors
 app.use((req, res, next) => {

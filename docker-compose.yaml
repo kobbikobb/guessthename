@@ -21,5 +21,16 @@ services:
     volumes:
       - ./api:/app
 
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - 8080:3001
+    links:
+      - api
+    volumes:
+      - ./frontend:/app
+
 volumes:
   data:
