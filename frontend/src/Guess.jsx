@@ -6,6 +6,10 @@ const Guess = () => {
     const [result, setResult] = useState('');
     
     const onGuess = async () => {
+        if(name.length < 1) {
+            setResult('Name is required!');
+        }
+
         const url = 'http://localhost:3000/api/guess';
         const data =  {
             userId: 'my-id',
@@ -14,7 +18,8 @@ const Guess = () => {
    
         const response = await axios.post(url, data);
 
-        setResult(response.status.toString());
+        console.log('Response', response.data)
+        setResult(response.data.isCorrect === true ? "Correct!" : "Incorrect, please try again!");
     };
 
     return (

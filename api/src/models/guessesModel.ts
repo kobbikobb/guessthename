@@ -1,13 +1,15 @@
-import { model, Schema, Model, Document } from 'mongoose';
+import { model, Schema, Model } from 'mongoose';
 
-export interface IGuess extends Document {
+export interface IGuess {
   userId: String;
   name: String;
+  isCorrect: boolean;
 }
 
 export const GuessesSchema: Schema = new Schema({
   userId: { type: String, required: true },
-  name: { type: String, required: true }
+  name: { type: String, required: true },
+  isCorrect: { type: Boolean, required: true }
 });
 
 export const Guesses: Model<IGuess> = model('Guesses', GuessesSchema);
