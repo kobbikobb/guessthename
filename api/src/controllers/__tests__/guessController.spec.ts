@@ -55,7 +55,7 @@ describe('guess controller', () => {
     expect(response.body.results.length).toEqual(2);
   });
 
-  it('should add guess', async () => {
+  it('should add incorrect guess', async () => {
     const response = await request(app).post('/api/guess').send({
       userId: 'my-user-id',
       name: 'Jack The Reaper'
@@ -65,8 +65,34 @@ describe('guess controller', () => {
     expect(response.body).toEqual(
       expect.objectContaining({
         userId: 'my-user-id',
-        name: 'Jack The Reaper'
+        name: 'Jack The Reaper',
+        isCorrect: false
       })
     );
+  });
+
+  it('should add correct guess', async () => {
+    const response = await request(app).post('/api/guess').send({
+      userId: 'my-user-id',
+      name: 'HardCodedForNow'
+    });
+
+    expect(response.statusCode).toEqual(HttpStatus.OK);
+    expect(response.body).toEqual(
+      expect.objectContaining({
+        userId: 'my-user-id',
+        name: 'HardCodedForNow',
+        isCorrect: true
+      })
+    );
+  });
+
+  it('should add empty guess', async () => {
+    const response = await request(app).post('/api/guess').send({
+      userId: 'my-user-id',
+      name: ''
+    });
+
+    expect(response.statusCode).toEqual(HttpStatus.BAD_REQUEST);
   });
 });

@@ -11,9 +11,18 @@ const getGuesses = async (req: Request, res: Response) => {
 
 // TODO: Add pagination
 const addGuess = async (req: Request, res: Response, next: NextFunction) => {
-  const inputGuess = req.body as guessesModel.IGuess;
-  const createdGuess = await guessesModel.createGuess(inputGuess);
-  return res.status(HttpStatus.OK).json(createdGuess);
+  try {
+    const isCorrect = req.body.name === 'HardCodedForNow';
+    const inputGuess: guessesModel.IGuess = {
+      userId: req.body.userId as String,
+      name: req.body.name as String,
+      isCorrect
+    };
+    const createdGuess = await guessesModel.createGuess(inputGuess);
+    return res.status(HttpStatus.OK).json(createdGuess);
+  } catch (error) {
+    return res.status(HttpStatus.BAD_REQUEST).json(error);
+  }
 };
 
 export default { addGuess, getGuesses };

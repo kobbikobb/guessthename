@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import morgan from 'morgan';
 import { HttpStatus } from './utils/httpUtils';
 import guessRoutes from './routes/guessRoutes';
-import cors from "cors";
+import cors from 'cors';
 
 const app: Express = express();
 
