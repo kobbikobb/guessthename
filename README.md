@@ -1,9 +1,18 @@
 # Guess the name
 Guess the name of a child or pet to be named.
 
+## Prerequisites
+
+### Install
+Git - Ubuntu: sudo apt install git
+DockerMachine - https://docs.docker.com/engine/install/ubuntu/
+DockerCompose - https://docs.docker.com/compose/install/
+Npm - Ubuntu: sudo apt install npm
+
 ## Run the application
 - Make sure docker is installed and running
 - Run: docker-compose up --build
+- Navigate to: http://localhost:8080/
 
 ## TODO
 
