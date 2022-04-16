@@ -14,14 +14,20 @@ Npm - Ubuntu: sudo apt install npm
 - Run: docker-compose up --build
 - Navigate to: http://localhost:8080/
 
+## Base64 Encode
+echo -n 'username' | base64
+echo -n 'password' | base64
+
+## Commands
+minikube service mongo-express-service
+- Note that without minikube tunnel, kubernetes would be showing external IP as “pending”.
+- minikube tunnel
+- minikube service --url mongo-express-service
+- https://minikube.sigs.k8s.io/docs/handbook/accessing/
+minikube dashboard
+
 ## TODO
 
-- Add a basic rest api service - [x]
-  - Add the first unit test - [x]
-  - Add rest api test (supertest) - [x]
-- Api uses mongodb - [x]
-- Continuous Integration - CI
-  - Enable CI (GitHub Actions) - [x]
-    - Check prettier - [x]
-
-
+- Move to Kubernetes
+- Add Nginx
+- Debug service locally
