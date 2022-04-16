@@ -12,6 +12,7 @@ const getGuesses = async (req: Request, res: Response) => {
 // TODO: Add pagination
 const addGuess = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    // TODO: Fetch name from db
     const isCorrect = req.body.name === 'HardCodedForNow';
     const inputGuess: guessesModel.IGuess = {
       userId: req.body.userId as String,

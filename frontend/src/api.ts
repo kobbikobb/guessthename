@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
-
 export const submitGuess = async (name: string) => {
-  const url = `${baseUrl}/api/guess`;
+  const url = '/api/guess';
   const data = {
     userId: 'my-id',
     name

@@ -15,19 +15,19 @@ describe('guess controller', () => {
   });
 
   it('should get empty guesses', async () => {
-    const response = await request(app).get('/api/guess');
+    const response = await request(app).get('/guess');
 
     expect(response.statusCode).toEqual(HttpStatus.OK);
     expect(response.body).toEqual({ results: [] });
   });
 
   it('should get guesses containing a single guess', async () => {
-    await request(app).post('/api/guess').send({
+    await request(app).post('/guess').send({
       userId: 'my-user-id-1',
       name: 'Jack The Yellow'
     });
 
-    const response = await request(app).get('/api/guess');
+    const response = await request(app).get('/guess');
 
     expect(response.statusCode).toEqual(HttpStatus.OK);
     expect(response.body.results.length).toEqual(1);
@@ -40,23 +40,23 @@ describe('guess controller', () => {
   });
 
   it('should get several guesses', async () => {
-    await request(app).post('/api/guess').send({
+    await request(app).post('/guess').send({
       userId: 'my-user-id-1',
       name: 'Jack The Yellow'
     });
-    await request(app).post('/api/guess').send({
+    await request(app).post('/guess').send({
       userId: 'my-user-id-2',
       name: 'Jack The Red'
     });
 
-    const response = await request(app).get('/api/guess');
+    const response = await request(app).get('/guess');
 
     expect(response.statusCode).toEqual(HttpStatus.OK);
     expect(response.body.results.length).toEqual(2);
   });
 
   it('should add incorrect guess', async () => {
-    const response = await request(app).post('/api/guess').send({
+    const response = await request(app).post('/guess').send({
       userId: 'my-user-id',
       name: 'Jack The Reaper'
     });
@@ -72,7 +72,7 @@ describe('guess controller', () => {
   });
 
   it('should add correct guess', async () => {
-    const response = await request(app).post('/api/guess').send({
+    const response = await request(app).post('/guess').send({
       userId: 'my-user-id',
       name: 'HardCodedForNow'
     });
@@ -88,7 +88,7 @@ describe('guess controller', () => {
   });
 
   it('should add empty guess', async () => {
-    const response = await request(app).post('/api/guess').send({
+    const response = await request(app).post('/guess').send({
       userId: 'my-user-id',
       name: ''
     });
