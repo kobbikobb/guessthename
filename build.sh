@@ -12,7 +12,17 @@ docker image build -f "Dockerfile" . \
   -t "kobbikobb/guessthename_api:latest" \
   -t "kobbikobb/guessthename_api:${COMMIT}"
 
+cd ..
+
+echo "Build guessthename_frontend"
+cd frontend
+docker image build -f "Dockerfile" . \
+  --build-arg "app_name=guessthename_frontend" \
+  -t "kobbikobb/guessthename_frontend:latest" \
+  -t "kobbikobb/guessthename_frontend:${COMMIT}"
+
 echo "Pushing images to dockerhub"
 docker login 
 docker push kobbikobb/guessthename_api --all-tags
+docker push kobbikobb/guessthename_frontend --all-tags
 echo "Pushed all images to dockerhub"
