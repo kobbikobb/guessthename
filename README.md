@@ -31,3 +31,9 @@ minikube dashboard
 - Move to Kubernetes
 - Add Nginx
 - Debug service locally
+
+## Next:
+
+- Build and use image of commit only
+- Run nodejs with prod builds
+- Use persistent volume for mongo
