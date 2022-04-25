@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 // Api routes
-app.use('/api/', guessRoutes);
+app.use('/', guessRoutes);
 
 // Not found route
 app.use((req, res) => {

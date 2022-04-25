@@ -7,5 +7,5 @@ kubectl apply -f mongo-configmap.yaml
 kubectl apply -f mongo.yaml
 kubectl apply -f mongo-express.yaml
 kubectl apply -f api.yaml
-
-# minikube service mongo-express-service
+kubectl apply -f frontend.yaml
+kubectl apply -f ingress-service.yaml
