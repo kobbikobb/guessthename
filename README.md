@@ -32,7 +32,6 @@ Npm - Ubuntu: sudo apt install npm
 
 ## TODO
 
-- Debug service locally with a reverse proxy
-- Use persistent volume for mongo
 - Run nodejs with prod builds
+- Debug service locally with a reverse proxy
 - Configure the name to guess
