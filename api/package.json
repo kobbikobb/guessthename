@@ -8,6 +8,7 @@
     "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "prettier-check": "prettier --config .prettierrc 'src/**/*.ts' --list-different",
     "build": "rm -rf dist/ && prettier --write 'src/**/*.ts' && tsc",
+    "start": "node dist/server.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
