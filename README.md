@@ -30,7 +30,31 @@ Npm - Ubuntu: sudo apt install npm
 - Note that without minikube tunnel, kubernetes would be showing external IP as "pending".
 - https://minikube.sigs.k8s.io/docs/handbook/accessing/
 
+## Debugging services inside the cluster
+
+### Prerequisites
+- Install Telepresence: https://www.telepresence.io/docs/latest/install/
+- How to intercept: https://www.telepresence.io/docs/latest/howtos/intercepts/
+- telepresence connect
+- curl -ik https://kubernetes.default
+- telepresence list (find the service you want to intercept)
+
+### Connect api
+- telepresence intercept api --port 3000 --env-file ~/backend-service-intercept.env
+- Open backend-service-intercept.env and find values to set in env:
+- export ME_CONFIG_MONGODB_ADMINUSERNAME=$ME_CONFIG_MONGODB_ADMINUSERNAME';
+- export ME_CONFIG_MONGODB_ADMINPASSWORD=$ME_CONFIG_MONGODB_ADMINPASSWORD';
+- export ME_CONFIG_MONGODB_SERVER=$MONGODB_SERVICE_SERVICE_HOST;
+- From api run: npm run dev
+
+### Connect frontend
+- telepresence intercept frontend --port 3001 --env-file ~/frontend-service-intercept.env
+- From frontend run: npm run dev
+
+### Disconnect
+- telepresence leave service-name
+
 ## TODO
 
-- Debug service locally with a reverse proxy
+- Create scripts to start teleprecense
 - Configure the name to guess
