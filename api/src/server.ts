@@ -2,7 +2,6 @@ import http from 'http';
 import app from './app';
 import mongoose from 'mongoose';
 
-
 const connectToDatabase = async () => {
   const user = process.env.ME_CONFIG_MONGODB_ADMINUSERNAME;
   const pass = process.env.ME_CONFIG_MONGODB_ADMINPASSWORD;
@@ -11,8 +10,7 @@ const connectToDatabase = async () => {
   try {
     console.log('Connecting to Mongo!');
     const uri = `mongodb://${user}:${pass}@${serverUrl}:27017/api?authSource=admin`;
-    await mongoose.connect(uri,
-    {
+    await mongoose.connect(uri, {
       user,
       pass
     });

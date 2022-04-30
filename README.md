@@ -32,6 +32,5 @@ Npm - Ubuntu: sudo apt install npm
 
 ## TODO
 
-- Run nodejs with prod builds
 - Debug service locally with a reverse proxy
 - Configure the name to guess
