@@ -41,10 +41,7 @@ Npm - Ubuntu: sudo apt install npm
 
 ### Connect api
 - telepresence intercept api --port 3000 --env-file ~/backend-service-intercept.env
-- Open backend-service-intercept.env and find values to set in env:
-- export ME_CONFIG_MONGODB_ADMINUSERNAME=$ME_CONFIG_MONGODB_ADMINUSERNAME';
-- export ME_CONFIG_MONGODB_ADMINPASSWORD=$ME_CONFIG_MONGODB_ADMINPASSWORD';
-- export ME_CONFIG_MONGODB_SERVER=$MONGODB_SERVICE_SERVICE_HOST;
+- source ./build/telepresence-source-backend.sh
 - From api run: npm run dev
 
 ### Connect frontend
@@ -55,6 +52,4 @@ Npm - Ubuntu: sudo apt install npm
 - telepresence leave service-name
 
 ## TODO
-
-- Create scripts to start teleprecense
 - Configure the name to guess
