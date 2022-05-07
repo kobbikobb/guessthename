@@ -52,4 +52,10 @@ Npm - Ubuntu: sudo apt install npm
 - telepresence leave service-name
 
 ## TODO
-- Configure the name to guess
+- Configure the name to guess (draft in https://excalidraw.com/)
+- Deploy frontend without webpack on nginx
+- Capture logging
+- host: guessthename.com
+- Stop building latest, use only by commit
+- Should npm run dev from frontend open up nginx?
+- Test teleprecense experience
