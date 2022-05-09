@@ -5,10 +5,16 @@ WORKDIR /app
 
 COPY package*.json ./
 COPY tsconfig.json ./
-Run npm install --production
+
+Run npm install
+RUN npm install typescript -g
+RUN npm install -g webpack
+RUN npm install -g webpack-cli
+RUN npm install -g html-webpack-plugin
 
 COPY . .
-Run npm run build
+
+RUN npm run build
 
 #Stage 2: Prod image
 FROM nginx:1.21

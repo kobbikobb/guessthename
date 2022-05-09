@@ -5,9 +5,12 @@ Guess the name of a child or pet to be named.
 
 ### Install
 Git - Ubuntu: sudo apt install git
+Npm - Ubuntu: sudo apt install npm
 DockerMachine - https://docs.docker.com/engine/install/ubuntu/
 DockerCompose - https://docs.docker.com/compose/install/
-Npm - Ubuntu: sudo apt install npm
+
+### Hypervison for Mac
+Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
 
 ## Starting the application
 - minikube start
