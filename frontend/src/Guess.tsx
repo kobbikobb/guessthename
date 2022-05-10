@@ -22,6 +22,7 @@ const Guess = () => {
   const onSubmitGuess = async () => {
     if (name.length < 1) {
       setResult({ success: false, message: 'Name is required!' });
+      return;
     }
 
     try {
