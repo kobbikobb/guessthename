@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: kobbikobb/guessthename_api:latest
+        image: kobbikobb/guessthename_api:{{COMMIT}}
         ports:
         - containerPort: 3000
         env:
