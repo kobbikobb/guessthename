@@ -54,6 +54,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 ### Disconnect
 - telepresence leave service-name
+- Useful when intercept is not working: telepresence uninstall --everything
 
 ## TODO
 - Configure the name to guess (draft in https://excalidraw.com/)

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: kobbikobb/guessthename_frontend:latest
+        image: kobbikobb/guessthename_frontend:{{COMMIT}}
         ports:
         - containerPort: 80
 ---
