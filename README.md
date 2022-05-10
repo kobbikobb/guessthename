@@ -4,16 +4,17 @@ Guess the name of a child or pet to be named.
 ## Prerequisites
 
 ### Install
+DockerMachine - https://docs.docker.com/engine/install/
+DockerCompose - https://docs.docker.com/compose/install/
 Git - Ubuntu: sudo apt install git
 Npm - Ubuntu: sudo apt install npm
-DockerMachine - https://docs.docker.com/engine/install/ubuntu/
-DockerCompose - https://docs.docker.com/compose/install/
 
-### Hypervison for Mac
+### For Mac
 Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
+Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 ## Starting the application
-- minikube start
+- minikube start    
 - minikube addons enable ingress
 - kubectl get pods -n ingress-nginx (verify you have ingress)
 - ./build-and-deploy.sh (you will need to login to dockerhub)
