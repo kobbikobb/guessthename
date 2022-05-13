@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const submitGuess = async (name: string) => {
+export const submitGuess = async (userId: string, name: string) => {
   const url = '/api/guess';
   const data = {
-    userId: 'my-id',
+    userId,
     name
   };
 
