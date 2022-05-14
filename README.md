@@ -65,3 +65,4 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - Stop building latest, use only by commit
 - Should npm run dev from frontend open up nginx?
 - Test teleprecense experience
+- Add Favicon to web app
