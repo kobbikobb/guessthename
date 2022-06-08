@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./build/build.sh
-./build/push.sh
+./scripts/build.sh
+./scripts/push.sh
 ./k8s/deploy.sh
