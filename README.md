@@ -45,7 +45,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 ### Connect api
 - telepresence intercept api --port 3000 --env-file ~/backend-service-intercept.env
-- source ./build/telepresence-source-backend.sh
+- source ./scripts/telepresence-source-backend.sh
 - From api run: npm run dev
 
 ### Connect frontend
