@@ -14,6 +14,9 @@ RUN npm install -g html-webpack-plugin
 
 COPY . .
 
+ARG REACT_APP_API_BASE_URL
+RUN sh create-env-file.sh REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
+
 RUN npm run build
 
 #Stage 2: Prod image

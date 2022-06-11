@@ -6,14 +6,12 @@ const connectToDatabase = async () => {
   const user = process.env.ME_CONFIG_MONGODB_ADMINUSERNAME;
   const pass = process.env.ME_CONFIG_MONGODB_ADMINPASSWORD;
   const serverUrl = process.env.ME_CONFIG_MONGODB_SERVER;
-
+  const serverUri = process.env.MONGODB_SERVER_URI;
   try {
     console.log('Connecting to Mongo!');
-    const uri = `mongodb://${user}:${pass}@${serverUrl}:27017/api?authSource=admin`;
-    await mongoose.connect(uri, {
-      user,
-      pass
-    });
+    const uri = serverUri || `mongodb://${user}:${pass}@${serverUrl}:27017/api?authSource=admin`;
+    console.log('Uri:', uri);
+    await mongoose.connect(uri);
 
     console.log('Connected to Mongo!');
   } catch (error) {

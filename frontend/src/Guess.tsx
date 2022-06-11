@@ -49,7 +49,7 @@ const Guess = ({userId}: GuessProps) => {
     <Container>
       <Row>
         <Col xs={2}>
-          <Image src="./images/baby.jpg" height={250} roundedCircle={true} />
+          <Image src="./public/images/baby.jpg" height={250} roundedCircle={true} />
         </Col>
         <Col xs={10}>
           <Form>

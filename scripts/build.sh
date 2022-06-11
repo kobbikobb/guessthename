@@ -17,5 +17,8 @@ echo "Build guessthename_frontend"
 cd frontend
 docker image build -f "Dockerfile" . \
   --build-arg "app_name=guessthename_frontend" \
+  --build-arg "REACT_APP_API_BASE_URL=http://localhost:3000" \
   -t "kobbikobb/guessthename_frontend:${COMMIT}"
+
+#   --build-arg "REACT_APP_API_BASE_URL=http://localhost:3000" \
   
