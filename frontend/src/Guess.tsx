@@ -9,6 +9,7 @@ import {
   Form
 } from 'react-bootstrap';
 import { submitGuess } from './utils/apiUtils';
+import babyImage from './assets/baby.jpg';
 
 interface IResult {
   success: boolean;
@@ -49,7 +50,7 @@ const Guess = ({userId}: GuessProps) => {
     <Container>
       <Row>
         <Col xs={2}>
-          <Image src="./images/baby.jpg" height={250} roundedCircle={true} />
+          <Image src={babyImage} height={250} roundedCircle={true} />
         </Col>
         <Col xs={10}>
           <Form>

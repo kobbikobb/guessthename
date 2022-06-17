@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <Navbar expand="lg" variant="dark" bg="dark">
       <Container>
-        <Navbar.Brand href="#">Guess the name</Navbar.Brand>
+        <Navbar.Brand href="#">Guess the name!!</Navbar.Brand>
       </Container>
     </Navbar>
   );

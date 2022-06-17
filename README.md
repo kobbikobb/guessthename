@@ -56,6 +56,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - telepresence leave service-name
 - Useful when intercept is not working: telepresence uninstall --everything
 - Useful when intercept is not working: hard refresh
+- Images are tagged with commit ID, add a commit before building and deploying
 
 ## TODO
 - Configure the name to guess (draft in https://excalidraw.com/)
@@ -65,4 +66,3 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - Stop building latest, use only by commit
 - Should npm run dev from frontend open up nginx?
 - Test teleprecense experience
-- Add Favicon to web app

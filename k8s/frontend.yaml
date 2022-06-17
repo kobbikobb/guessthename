@@ -19,6 +19,7 @@ spec:
         image: kobbikobb/guessthename_frontend:{{COMMIT}}
         ports:
         - containerPort: 80
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
