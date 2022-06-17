@@ -22,7 +22,7 @@ FROM nginx:1.21
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=build /app/dist .
-COPY --from=build /app/src/images ./images
+COPY --from=build /app/loaders ./loaders
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 

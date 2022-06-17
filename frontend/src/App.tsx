@@ -5,7 +5,6 @@ import {
   Container
 } from 'react-bootstrap';
 import Navigation from './Navigation';
-import clientjs from 'clientjs';
 import { getUserFingerprint } from './utils/clientUtils';
 
 const App = () => {

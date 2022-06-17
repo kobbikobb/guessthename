@@ -35,6 +35,7 @@ spec:
               configMapKeyRef:
                 name: mongodb-configmap
                 key: database_url
+        imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
