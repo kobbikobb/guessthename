@@ -17,13 +17,18 @@ COPY . .
 RUN npm run build
 
 #Stage 2: Prod image
-FROM nginx:1.21
+FROM nginx:1.21.6-alpine
 
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=build /app/dist .
-COPY --from=build /app/loaders ./loaders
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY ./env.sh .
+COPY .env .
+
+# Add bash
+RUN apk add --no-cache bash
 
 EXPOSE 80
+
+CMD ["/bin/bash", "-c", "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""]

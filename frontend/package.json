@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.js --env env=development",
+    "dev": "./env.sh && webpack serve --config webpack.config.js --env env=development",
     "build": "webpack --config webpack.config.js --env env=production",
-    "start": "webpack serve --config webpack.config.js --env env=production",
     "prettier": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --write",
     "prettier-check": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --list-different"
   },
@@ -33,6 +32,7 @@
     "@types/react-dom": "^17.0.11",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.5.1",
