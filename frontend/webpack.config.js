@@ -45,7 +45,10 @@ module.exports = {
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'env-context.js' }
+                { 
+                    from: 'env-context.js',
+                    noErrorOnMissing: true 
+                }
             ]
         }),
     ],
