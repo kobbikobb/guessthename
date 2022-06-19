@@ -52,6 +52,9 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - telepresence intercept frontend --port 3001 --env-file ~/frontend-service-intercept.env
 - From frontend run: npm run dev
 
+### Docker compose
+- docker-compose up --build
+
 ### Useful
 - telepresence leave service-name
 - Useful when intercept is not working: telepresence uninstall --everything
