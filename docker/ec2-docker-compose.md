@@ -2,6 +2,11 @@
 
 ## Start an instance
 
+- Amazon Linux 2
+- t2.micro
+- Download key-pair 
+- Allow ssh and http
+- Optional: Separate disk for data
 - User Data
 ```
 #!/bin/bash
@@ -19,13 +24,26 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ```
 
-### Install docker compose
+### Allow group members to read pem file
+chmod 0400 key-pair.pem
 
-- Download
-sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+### Copy files into docker-compose and nginx.conf into the machine
 
-- Permissions
-sudo chmod +x /usr/local/bin/docker-compose
+scp -i key-pair.pem -r /guessthename/nginx.conf ec2-user@public-ip:nginx.conf
+scp -i key-pair.pem -r /guessthename/docker-compose-explicit.yaml ec2-user@public-ip:docker-compose-explicit.yaml
 
-- Verify
-docker-compose version
+### SSH into machine and start docker-compose
+
+ssh -i key-pair.pem ec2-user@public-ip
+
+### Prepare data folder
+sudo mkdir /data
+
+Optional: Mount it to EBS
+See: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html
+lsblk
+sudo mkfs -t xfs /dev/XXX
+sudo mount /dev/XXX /data
+
+### Start docker compose
+docker-compose --file docker-compose-explicit.yaml up

@@ -5,6 +5,8 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    volumes:
+      - /data:/data/db
 
   api:
     image: kobbikobb/guessthename_api:2c1a99a750ecf7a31420a5af988005057f78cb25
