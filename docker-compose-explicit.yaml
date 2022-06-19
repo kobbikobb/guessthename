@@ -7,8 +7,7 @@ services:
     image: mongo
 
   api:
-    build: ./api
-    container_name: api
+    image: kobbikobb/guessthename_api:2c1a99a750ecf7a31420a5af988005057f78cb25
     restart: always
     environment:
       MONGO_DB_URI: "mongodb://mongo/api" 
@@ -16,7 +15,7 @@ services:
       - mongo
 
   frontend:
-    build: ./frontend
+    image: kobbikobb/guessthename_frontend:2c1a99a750ecf7a31420a5af988005057f78cb25
     container_name: frontend
     restart: always
     environment:
