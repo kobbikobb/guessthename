@@ -54,6 +54,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 
 ### Docker compose
 - docker-compose up --build
+- docker-compose --file docker-compose-explicit.yaml up
 
 ### Useful
 - telepresence leave service-name
