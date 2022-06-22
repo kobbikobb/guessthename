@@ -2,7 +2,7 @@
 
 COMMIT=$(git rev-parse --verify HEAD)
 
-echo "Build guessthename_api with tag #$COMMIT"
+echo "Build guessthename_api #$COMMIT"
 
 cd api
 docker image build -f "Dockerfile" . \

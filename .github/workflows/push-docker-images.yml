@@ -22,11 +22,11 @@ jobs:
         run: ./scripts/build-frontend.sh
       -
         name: Build backend
-        run: ./scripts/build-backend.sh
+        run: ./scripts/build-api.sh
       -
         name: Push frontend
         run: ./scripts/push-frontend.sh
       -
         name: Push backend
-        run: ./scripts/push-backend.sh
+        run: ./scripts/push-api.sh
   
