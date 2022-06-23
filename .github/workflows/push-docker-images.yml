@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build frontend
+        run: ./scripts/build-frontend.sh
+      -
+        name: Build backend
+        run: ./scripts/build-api.sh
+      -
+        name: Push frontend
+        run: ./scripts/push-frontend.sh
+      -
+        name: Push backend
+        run: ./scripts/push-api.sh
+  

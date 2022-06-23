@@ -1,3 +1,4 @@
+#!/bin/bash
 
 ME_CONFIG_MONGODB_ADMINUSERNAME=$(grep -Po '(?<=^ME_CONFIG_MONGODB_ADMINUSERNAME=).*$' ~/backend-service-intercept.env)
 ME_CONFIG_MONGODB_ADMINPASSWORD=$(grep -Po '(?<=^ME_CONFIG_MONGODB_ADMINPASSWORD=).*$' ~/backend-service-intercept.env)
