@@ -22,7 +22,7 @@ const App = () => {
       <Container style={{ marginTop: 50 }}>
         <HashRouter>
           <Routes>
-            <Route path="/" element={<NameTarget />} />
+            <Route path="/" element={<NameTarget userId={userId} />} />
             <Route path="guess" element={<Guess userId={userId}/>} />
           </Routes>
         </HashRouter>

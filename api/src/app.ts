@@ -2,6 +2,8 @@ import express, { Express } from 'express';
 import morgan from 'morgan';
 import { HttpStatus } from './utils/httpUtils';
 import guessRoutes from './routes/guessRoutes';
+import nameTargetRoutes from './routes/nameTargetRoutes';
+
 import cors from 'cors';
 
 const app: Express = express();
@@ -28,6 +30,7 @@ app.use((req, res, next) => {
 
 // Api routes
 app.use('/', guessRoutes);
+app.use('/', nameTargetRoutes);
 
 // Not found route
 app.use((req, res) => {
