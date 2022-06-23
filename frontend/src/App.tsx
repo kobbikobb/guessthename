@@ -1,11 +1,17 @@
 import React from 'react';
-import Guess from './Guess';
+import {
+  HashRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Container
 } from 'react-bootstrap';
 import Navigation from './Navigation';
 import { getUserFingerprint } from './utils/clientUtils';
+import Guess from './Guess';
+import NameTarget from './NameTarget';
 
 const App = () => {
   const userId = getUserFingerprint();
@@ -14,7 +20,12 @@ const App = () => {
     <>
       <Navigation />
       <Container style={{ marginTop: 50 }}>
-        <Guess userId={userId}/>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<NameTarget />} />
+            <Route path="guess" element={<Guess userId={userId}/>} />
+          </Routes>
+        </HashRouter>
       </Container>
     </>
   );
