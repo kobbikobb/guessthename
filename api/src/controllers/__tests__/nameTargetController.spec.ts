@@ -23,6 +23,7 @@ describe('name target controller', () => {
     expect(response.statusCode).toEqual(HttpStatus.OK);
     expect(response.body).toEqual(
       expect.objectContaining({
+        id: expect.anything(),
         userId: 'my-user-id',
         name: 'Sara'
       })
@@ -57,6 +58,7 @@ describe('name target controller', () => {
     expect(response.body.results.length).toEqual(1);
     expect(response.body.results[0]).toEqual(
       expect.objectContaining({
+        id: expect.anything(),
         userId: 'my-user-id-1',
         name: 'Esja'
       })

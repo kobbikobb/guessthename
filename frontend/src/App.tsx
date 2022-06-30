@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  HashRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Container
-} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Navigation from './Navigation';
 import { getUserFingerprint } from './utils/clientUtils';
 import Guess from './Guess';
-import NameTarget from './NameTarget';
+import NameTargetOverview from './name-targets/NameTargetOverview';
 
 const App = () => {
   const userId = getUserFingerprint();
@@ -22,8 +16,8 @@ const App = () => {
       <Container style={{ marginTop: 50 }}>
         <HashRouter>
           <Routes>
-            <Route path="/" element={<NameTarget userId={userId} />} />
-            <Route path="guess" element={<Guess userId={userId}/>} />
+            <Route path="/" element={<NameTargetOverview userId={userId} />} />
+            <Route path="guess" element={<Guess userId={userId} />} />
           </Routes>
         </HashRouter>
       </Container>

@@ -1,6 +1,12 @@
-import { model, Schema, Model } from 'mongoose';
+import { model, Schema, Model, Document } from 'mongoose';
 
-export interface INameTarget {
+export interface INameTargetInput {
+  userId: String;
+  name: String;
+}
+
+export interface INameTargetModel extends Document {
+  _id: String;
   userId: String;
   name: String;
 }
@@ -10,15 +16,17 @@ export const NameTargetsSchema: Schema = new Schema({
   name: { type: String, required: true }
 });
 
-export const NameTargets: Model<INameTarget> = model(
+export const NameTargets: Model<INameTargetModel> = model(
   'NameTargets',
   NameTargetsSchema
 );
 
-export const createNameTarget = (guess: INameTarget) => {
+export const createNameTarget = (
+  guess: INameTargetInput
+): Promise<INameTargetModel> => {
   return NameTargets.create(guess);
 };
 
-export const getNameTargets = async () => {
+export const getNameTargets = async (): Promise<Array<INameTargetModel>> => {
   return NameTargets.find({});
 };
