@@ -1,15 +1,10 @@
 import react, { useState } from 'react';
-import {
-  Container,
-  Button,
-  Form,
-  Alert,
-} from 'react-bootstrap';
-import { createNameTarget } from './utils/apiUtils';
+import { Container, Button, Form, Alert } from 'react-bootstrap';
+import { createNameTarget } from '../utils/apiUtils';
 
 type NameTargetProps = {
-  userId: string,
-}
+  userId: string;
+};
 
 const NameTarget = ({ userId }: NameTargetProps) => {
   const [name, setName] = useState('');
@@ -55,10 +50,7 @@ const NameTarget = ({ userId }: NameTargetProps) => {
         </Button>
       </Form>
       {errorMessage && (
-        <Alert
-          style={{ marginTop: 20 }}
-          variant={'danger'}
-        >
+        <Alert style={{ marginTop: 20 }} variant={'danger'}>
           {errorMessage}
         </Alert>
       )}

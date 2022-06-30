@@ -14,6 +14,11 @@ export const createNameTarget = async (userId: string, name: string) => {
   return response.data;
 };
 
+export const getNameTargets = async () => {
+  const url = `${baseUrl}/name-target`;
+  const response = await axios.get(url);
+  return response.data.results;
+};
 
 export const submitGuess = async (userId: string, name: string) => {
   const url = `${baseUrl}/guess`;

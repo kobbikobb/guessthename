@@ -17,10 +17,10 @@ interface IResult {
 }
 
 type GuessProps = {
-  userId: string,
-}
+  userId: string;
+};
 
-const Guess = ({userId}: GuessProps) => {
+const Guess = ({ userId }: GuessProps) => {
   const [name, setName] = useState('');
   const [result, setResult] = useState<IResult | null>(null);
 
