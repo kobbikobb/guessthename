@@ -14,7 +14,7 @@ const addGuess = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // TODO: Fetch name from db
     const isCorrect = req.body.name === 'HardCodedForNow';
-    const inputGuess: guessesModel.IGuess = {
+    const inputGuess: guessesModel.IGuessInput = {
       userId: req.body.userId as String,
       name: req.body.name as String,
       isCorrect
