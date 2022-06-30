@@ -6,12 +6,11 @@ export interface INameTargetInput {
 }
 
 export interface INameTargetModel extends Document {
-  _id: String;
   userId: String;
   name: String;
 }
 
-export const NameTargetsSchema: Schema = new Schema({
+export const NameTargetsSchema: Schema<INameTargetModel> = new Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true }
 });
@@ -21,12 +20,10 @@ export const NameTargets: Model<INameTargetModel> = model(
   NameTargetsSchema
 );
 
-export const createNameTarget = (
-  guess: INameTargetInput
-): Promise<INameTargetModel> => {
+export const createNameTarget = (guess: INameTargetInput) => {
   return NameTargets.create(guess);
 };
 
-export const getNameTargets = async (): Promise<Array<INameTargetModel>> => {
+export const getNameTargets = async () => {
   return NameTargets.find({});
 };

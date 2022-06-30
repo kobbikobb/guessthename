@@ -5,7 +5,7 @@ import guessRoutes from './routes/guessRoutes';
 import nameTargetRoutes from './routes/nameTargetRoutes';
 
 import cors from 'cors';
-import rateLimit from 'express-rate-limit'
+import rateLimit from 'express-rate-limit';
 
 const app: Express = express();
 
@@ -31,12 +31,12 @@ app.use((req, res, next) => {
 
 // Add rate limiting
 const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-})
-app.use(limiter)
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+  legacyHeaders: false // Disable the `X-RateLimit-*` headers
+});
+app.use(limiter);
 
 // Api routes
 app.use('/', guessRoutes);
