@@ -8,8 +8,8 @@ import {
   Alert,
   Form
 } from 'react-bootstrap';
-import { submitGuess } from './utils/apiUtils';
-import babyImage from './assets/baby.jpg';
+import { submitGuess } from '../utils/apiUtils';
+import babyImage from '../assets/baby.jpg';
 
 interface IResult {
   success: boolean;
@@ -18,9 +18,10 @@ interface IResult {
 
 type GuessProps = {
   userId: string;
+  nameTargetId: string;
 };
 
-const Guess = ({ userId }: GuessProps) => {
+const Guess = ({ userId, nameTargetId }: GuessProps) => {
   const [name, setName] = useState('');
   const [result, setResult] = useState<IResult | null>(null);
 
@@ -31,7 +32,7 @@ const Guess = ({ userId }: GuessProps) => {
     }
 
     try {
-      const result = await submitGuess(userId, name);
+      const result = await submitGuess(userId, nameTargetId, name);
 
       setResult({
         success: result.isCorrect === true,
