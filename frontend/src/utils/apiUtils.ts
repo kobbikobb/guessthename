@@ -20,13 +20,17 @@ export const getNameTargets = async () => {
   return response.data.results;
 };
 
-export const submitGuess = async (userId: string, name: string) => {
+export const submitGuess = async (
+  userId: string,
+  nameTargetId: string,
+  name: string
+) => {
   const url = `${baseUrl}/guess`;
   const data = {
     userId,
+    nameTargetId,
     name
   };
-
   const response = await axios.post(url, data);
   return response.data;
 };

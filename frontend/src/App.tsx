@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import Navigation from './Navigation';
 import { getUserFingerprint } from './utils/clientUtils';
-import Guess from './Guess';
+import GuessRoute from './guesses/GuessRoute';
 import NameTargetOverview from './name-targets/NameTargetOverview';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <HashRouter>
           <Routes>
             <Route path="/" element={<NameTargetOverview userId={userId} />} />
-            <Route path="guess" element={<Guess userId={userId} />} />
+            <Route path="guess" element={<GuessRoute userId={userId} />} />
           </Routes>
         </HashRouter>
       </Container>
