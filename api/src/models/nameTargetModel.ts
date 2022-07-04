@@ -1,4 +1,4 @@
-import { model, Schema, Model, Document } from 'mongoose';
+import { model, Schema, Model, Document, Types } from 'mongoose';
 
 export interface INameTargetInput {
   userId: String;
@@ -26,4 +26,11 @@ export const createNameTarget = (guess: INameTargetInput) => {
 
 export const getNameTargets = async () => {
   return NameTargets.find({});
+};
+
+export const findNameTarget = async (id: string) => {
+  if (!Types.ObjectId.isValid(id)) {
+    return null;
+  }
+  return NameTargets.findById(new Types.ObjectId(id));
 };
