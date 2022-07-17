@@ -9,8 +9,18 @@ echo "window._env_ = {" >> ./env-context.js
 
 # NOTE: printf '%s\n' = add a new line after string
 
-# Read each line in .env file
-for line in $(cat .env)
+targetFile=""
+if test -f ".env";
+then
+  targetFile=.env
+else
+  targetFile=.env-defaults
+fi
+
+echo Reading from environment file: $targetFile
+
+# Read each line in environment file
+for line in $(cat $targetFile)
 do
   if printf '%s\n' "$line" | grep -q -e '='; then
     envname=$(printf '%s\n' "$line" | sed -e 's/=.*//')
