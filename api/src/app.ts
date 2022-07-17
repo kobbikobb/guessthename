@@ -5,6 +5,7 @@ import guessRoutes from './routes/guessRoutes';
 import nameTargetRoutes from './routes/nameTargetRoutes';
 
 import cors from 'cors';
+import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 
 const app: Express = express();
@@ -28,6 +29,9 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
 
 // Add rate limiting
 const limiter = rateLimit({
