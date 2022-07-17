@@ -28,6 +28,9 @@ export const createGuess = (guess: ICreateGuess) => {
   return Guesses.create(guess);
 };
 
-export const getGuesses = async (nameTargetId: any) => {
-  return Guesses.find({ nameTargetId: nameTargetId + '' });
+export const getGuesses = async (nameTargetId: string) => {
+  if (typeof nameTargetId !== 'string') {
+    return [];
+  }
+  return Guesses.find({ nameTargetId });
 };
