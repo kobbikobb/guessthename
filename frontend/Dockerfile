@@ -24,7 +24,7 @@ RUN rm -rf ./*
 COPY --from=build /app/dist .
 
 COPY ./env.sh .
-COPY .env .
+COPY .env-defaults .
 
 # Add bash
 RUN apk add --no-cache bash
