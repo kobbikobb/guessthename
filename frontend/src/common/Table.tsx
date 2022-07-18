@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable, Column } from 'react-table';
+import BTable from 'react-bootstrap/Table';
 
 type TableProps = {
   columns: Array<Column<Object>>;
@@ -13,7 +14,7 @@ export default function Table({ columns, data }: TableProps) {
       data
     });
   return (
-    <table {...getTableProps()}>
+    <BTable striped bordered hover {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
@@ -35,6 +36,6 @@ export default function Table({ columns, data }: TableProps) {
           );
         })}
       </tbody>
-    </table>
+    </BTable>
   );
 }

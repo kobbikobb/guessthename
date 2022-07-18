@@ -1,16 +1,25 @@
-import react, { useEffect, useState } from 'react';
+import react from 'react';
 import { Container } from 'react-bootstrap';
 import NameTargetList from './NameTargetList';
-import CreateNameTarget from './CreateNameTarget';
+import CreateNameTargetModal from './CreateNameTargetModal';
 
-type NameTargetOverviewProps = {
+type Props = {
   userId: string;
 };
 
-const NameTargetOverview = ({ userId }: NameTargetOverviewProps) => {
+const NameTargetOverview = ({ userId }: Props) => {
   return (
     <Container>
-      <CreateNameTarget userId={userId}></CreateNameTarget>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingBottom: '16px'
+        }}
+      >
+        <h2>Name Targets</h2>
+        <CreateNameTargetModal userId={userId} />
+      </div>
       <NameTargetList />
     </Container>
   );
