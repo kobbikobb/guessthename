@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import Table from '../common/Table';
 import { Link } from 'react-router-dom';
 
-type NameTargetTableProps = {
+type Props = {
   data: Array<Object>;
 };
 
-export default function NameTargetTable({ data }: NameTargetTableProps) {
+export default function NameTargetTable({ data }: Props) {
   const columns = useMemo(
     () => [
       {
