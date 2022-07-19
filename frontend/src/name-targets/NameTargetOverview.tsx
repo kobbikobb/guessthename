@@ -1,13 +1,32 @@
-import react from 'react';
+import react, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import NameTargetList from './NameTargetList';
 import CreateNameTargetModal from './CreateNameTargetModal';
+import NameTargetTable from './NameTargetTable';
+import { getNameTargets } from '../utils/apiUtils';
 
 type Props = {
   userId: string;
 };
 
 const NameTargetOverview = ({ userId }: Props) => {
+  const [nameTargets, setNameTargets]: any[] = useState([]);
+
+  // TODO: Consider custom webhook f.x:
+  // https://betterprogramming.pub/clean-api-call-with-react-hooks-3bd6438a375a
+  useEffect(() => {
+    const fetchData = async () => {
+      const targets = await getNameTargets();
+      setNameTargets(targets);
+    };
+    fetchData();
+  }, []);
+
+  const nameTargetAdded = (nameTarget: any) => {
+    const newTargets: any[] = [...nameTargets];
+    newTargets.push(nameTarget);
+    setNameTargets(newTargets);
+  };
+
   return (
     <Container>
       <div
@@ -18,9 +37,14 @@ const NameTargetOverview = ({ userId }: Props) => {
         }}
       >
         <h2>Name Targets</h2>
-        <CreateNameTargetModal userId={userId} />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <CreateNameTargetModal
+            userId={userId}
+            onNewNameTarget={nameTargetAdded}
+          />
+        </div>
       </div>
-      <NameTargetList />
+      <NameTargetTable data={nameTargets} />
     </Container>
   );
 };
