@@ -5,9 +5,10 @@ import { createNameTarget } from '../utils/apiUtils';
 
 type Props = {
   userId: string;
+  onNewNameTarget: Function;
 };
 
-const CreateNameTargetModal = ({ userId }: Props) => {
+const CreateNameTargetModal = ({ userId, onNewNameTarget }: Props) => {
   const [show, setShow] = useState(false);
   const showDialog = () => setShow(true);
   const closeDialog = () => setShow(false);
@@ -22,7 +23,8 @@ const CreateNameTargetModal = ({ userId }: Props) => {
     }
 
     try {
-      await createNameTarget(userId, name);
+      const nameTarget = await createNameTarget(userId, name);
+      onNewNameTarget(nameTarget);
       closeDialog();
     } catch (e) {
       const error = e as Error;
