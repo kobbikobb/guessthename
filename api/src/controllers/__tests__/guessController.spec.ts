@@ -16,12 +16,14 @@ describe('guess controller', () => {
 
   describe('with a name target', () => {
     const userId = 'my-user-id-1';
+    const title = 'Some title';
     const correctName = 'Amy Smith';
     let nameTargetId: '';
 
     beforeEach(async () => {
       const response = await request(app).post('/name-target').send({
         userId: userId,
+        title,
         name: correctName
       });
 

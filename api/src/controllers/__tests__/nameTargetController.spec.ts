@@ -17,6 +17,7 @@ describe('name target controller', () => {
   it('should add correct name-target', async () => {
     const response = await request(app).post('/name-target').send({
       userId: 'my-user-id',
+      title: 'Mike and Amy',
       name: 'Sara'
     });
 
@@ -25,14 +26,27 @@ describe('name target controller', () => {
       expect.objectContaining({
         id: expect.anything(),
         userId: 'my-user-id',
-        name: 'Sara'
+        title: 'Mike and Amy',
+        name: 'Sara',
+        createdAt: expect.anything()
       })
     );
   });
 
-  it('should not add empty name target', async () => {
+  it('should not add name target when title is missing', async () => {
     const response = await request(app).post('/name-target').send({
       userId: 'my-user-id',
+      title: '',
+      name: 'Name'
+    });
+
+    expect(response.statusCode).toEqual(HttpStatus.BAD_REQUEST);
+  });
+
+  it('should not add name target when name is missing', async () => {
+    const response = await request(app).post('/name-target').send({
+      userId: 'my-user-id',
+      title: 'Title',
       name: ''
     });
 
@@ -49,6 +63,7 @@ describe('name target controller', () => {
   it('should get name targets containing a single name target', async () => {
     await request(app).post('/name-target').send({
       userId: 'my-user-id-1',
+      title: 'Stelpan þeirra Jakobs og Dagnýjar',
       name: 'Esja'
     });
 
@@ -60,7 +75,8 @@ describe('name target controller', () => {
       expect.objectContaining({
         id: expect.anything(),
         userId: 'my-user-id-1',
-        name: 'Esja'
+        title: 'Stelpan þeirra Jakobs og Dagnýjar',
+        createdAt: expect.anything()
       })
     );
   });
@@ -68,10 +84,12 @@ describe('name target controller', () => {
   it('should get several name targets', async () => {
     await request(app).post('/name-target').send({
       userId: 'my-user-id-1',
+      title: 'Jakob og Dagný',
       name: 'Esja'
     });
     await request(app).post('/name-target').send({
       userId: 'my-user-id-2',
+      title: 'Beggi og Hrefna',
       name: 'Eva'
     });
 

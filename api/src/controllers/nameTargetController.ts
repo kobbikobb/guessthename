@@ -2,11 +2,22 @@ import { Request, Response } from 'express';
 import { HttpStatus } from '../utils/httpUtils';
 import * as nameTargetModel from '../models/nameTargetModel';
 
-const toDto = (nameTarget: nameTargetModel.INameTargetModel) => {
+const toDtoCreate = (nameTarget: nameTargetModel.INameTargetModel) => {
   return {
     id: nameTarget._id,
     userId: nameTarget.userId,
-    name: nameTarget.name
+    title: nameTarget.title,
+    name: nameTarget.name,
+    createdAt: nameTarget.createdAt
+  };
+};
+
+const toDtoList = (nameTarget: nameTargetModel.INameTargetModel) => {
+  return {
+    id: nameTarget._id,
+    userId: nameTarget.userId,
+    title: nameTarget.title,
+    createdAt: nameTarget.createdAt
   };
 };
 
@@ -14,10 +25,11 @@ const createNameTarget = async (req: Request, res: Response) => {
   try {
     const inputGuess: nameTargetModel.INameTargetInput = {
       userId: req.body.userId as String,
+      title: req.body.title as String,
       name: req.body.name as String
     };
     const createdGuess = await nameTargetModel.createNameTarget(inputGuess);
-    return res.status(HttpStatus.OK).json(toDto(createdGuess));
+    return res.status(HttpStatus.OK).json(toDtoCreate(createdGuess));
   } catch (error) {
     return res.status(HttpStatus.BAD_REQUEST).json(error);
   }
@@ -26,7 +38,7 @@ const createNameTarget = async (req: Request, res: Response) => {
 const getNameTargets = async (req: Request, res: Response) => {
   const nameTargets = await nameTargetModel.getNameTargets();
   return res.status(HttpStatus.OK).json({
-    results: nameTargets.map((target) => toDto(target))
+    results: nameTargets.map((target) => toDtoList(target))
   });
 };
 

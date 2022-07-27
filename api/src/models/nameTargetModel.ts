@@ -2,18 +2,25 @@ import { model, Schema, Model, Document, Types } from 'mongoose';
 
 export interface INameTargetInput {
   userId: String;
+  title: String;
   name: String;
 }
 
 export interface INameTargetModel extends Document {
   userId: String;
+  title: String;
   name: String;
+  createdAt: Date;
 }
 
-export const NameTargetsSchema: Schema<INameTargetModel> = new Schema({
-  userId: { type: String, required: true },
-  name: { type: String, required: true }
-});
+export const NameTargetsSchema: Schema<INameTargetModel> = new Schema(
+  {
+    userId: { type: String, required: true },
+    title: { type: String, required: true },
+    name: { type: String, required: true }
+  },
+  { timestamps: true }
+);
 
 export const NameTargets: Model<INameTargetModel> = model(
   'NameTargets',

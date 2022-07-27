@@ -13,17 +13,22 @@ const CreateNameTargetModal = ({ userId, onNewNameTarget }: Props) => {
   const showDialog = () => setShow(true);
   const closeDialog = () => setShow(false);
 
+  const [title, setTitle] = useState('');
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleCreateNameTarget = async () => {
+    if (title.length < 1) {
+      setErrorMessage('Title is required!');
+      return;
+    }
     if (name.length < 1) {
       setErrorMessage('Name target is required!');
       return;
     }
 
     try {
-      const nameTarget = await createNameTarget(userId, name);
+      const nameTarget = await createNameTarget(userId, name, title);
       onNewNameTarget(nameTarget);
       closeDialog();
     } catch (e) {
@@ -45,6 +50,18 @@ const CreateNameTargetModal = ({ userId, onNewNameTarget }: Props) => {
           <Container>
             <Form>
               <Form.Group className="mb-3">
+                <Form.Label>Title:</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter the title for the name target"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <Form.Text className="text-muted">
+                  John and Mary's child.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3">
                 <Form.Label>Name target (to be guessed):</Form.Label>
                 <Form.Control
                   type="text"
@@ -52,8 +69,7 @@ const CreateNameTargetModal = ({ userId, onNewNameTarget }: Props) => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 <Form.Text className="text-muted">
-                  We will not share the name but we will allow other to guess
-                  it.
+                  The name of the child, we will encrypt it.
                 </Form.Text>
               </Form.Group>
             </Form>
