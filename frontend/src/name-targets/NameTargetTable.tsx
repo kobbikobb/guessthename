@@ -13,13 +13,17 @@ export default function NameTargetTable({ data }: Props) {
         Header: 'Name targets',
         columns: [
           {
-            Header: 'Name',
-            accessor: 'name',
+            Header: 'Title',
+            accessor: 'title',
             Cell: (e: { value: string; row: { original: { id: string } } }) => (
               <Link to={`/guess?nameTargetId=${e.row.original.id}`}>
                 {e.value}
               </Link>
             )
+          },
+          {
+            Header: 'Created at',
+            accessor: 'createdAt'
           }
         ]
       }

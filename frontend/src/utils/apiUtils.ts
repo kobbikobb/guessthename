@@ -3,11 +3,16 @@ import axios from 'axios';
 // @ts-ignore
 const baseUrl = window._env_?.API_BASE_URL;
 
-export const createNameTarget = async (userId: string, name: string) => {
+export const createNameTarget = async (
+  userId: string,
+  name: string,
+  title: string
+) => {
   const url = `${baseUrl}/name-target`;
   const data = {
     userId,
-    name
+    name,
+    title
   };
 
   const response = await axios.post(url, data);
