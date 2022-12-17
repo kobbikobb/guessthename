@@ -9,7 +9,7 @@ services:
       - /data:/data/db
 
   api:
-    image: kobbikobb/guessthename_api:073d930941d300759d8a8219a4097a2d4c55e923
+    image: kobbikobb/guessthename_api:latest
     restart: always
     environment:
       MONGO_DB_URI: "mongodb://mongo/api" 
@@ -17,7 +17,7 @@ services:
       - mongo
 
   frontend:
-    image: kobbikobb/guessthename_frontend:073d930941d300759d8a8219a4097a2d4c55e923
+    image: kobbikobb/guessthename_frontend:latest
     container_name: frontend
     restart: always
     environment:
