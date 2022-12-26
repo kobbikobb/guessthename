@@ -1,10 +1,18 @@
 import { model, Schema, Model, Document } from 'mongoose';
 
-export interface ICreateGuess {
-  userId: String;
-  nameTargetId: String;
-  name: String;
+export interface ICreateGuessInput {
+  userId: string;
+  nameTargetId: string;
+  name: string;
   isCorrect: boolean;
+}
+
+export interface ICreateGuess {
+  userId: string;
+  nameTargetId: string;
+  name: string;
+  isCorrect: boolean;
+  createdAt: Date;
 }
 
 export interface IGuessModel extends Document {
@@ -12,25 +20,25 @@ export interface IGuessModel extends Document {
   nameTargetId: String;
   name: String;
   isCorrect: boolean;
-  // TODO: ADD Time
+  createdAt: Date;
 }
 
-export const GuessesSchema: Schema<IGuessModel> = new Schema({
-  userId: { type: String, required: true },
-  nameTargetId: { type: String, required: true },
-  name: { type: String, required: true },
-  isCorrect: { type: Boolean, required: true }
-});
+export const GuessesSchema: Schema<IGuessModel> = new Schema(
+  {
+    userId: { type: String, required: true },
+    nameTargetId: { type: String, required: true },
+    name: { type: String, required: true },
+    isCorrect: { type: Boolean, required: true }
+  },
+  { timestamps: true }
+);
 
 export const Guesses: Model<IGuessModel> = model('Guesses', GuessesSchema);
 
-export const createGuess = (guess: ICreateGuess) => {
+export const createGuess = (guess: ICreateGuessInput) => {
   return Guesses.create(guess);
 };
 
 export const getGuesses = async (nameTargetId: string) => {
-  if (typeof nameTargetId !== 'string') {
-    return [];
-  }
   return Guesses.find({ nameTargetId });
 };

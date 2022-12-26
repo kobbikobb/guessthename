@@ -24,9 +24,9 @@ const toDtoList = (nameTarget: nameTargetModel.INameTargetModel) => {
 const createNameTarget = async (req: Request, res: Response) => {
   try {
     const inputGuess: nameTargetModel.INameTargetInput = {
-      userId: req.body.userId as String,
-      title: req.body.title as String,
-      name: req.body.name as String
+      userId: req.body.userId,
+      title: req.body.title,
+      name: req.body.name
     };
     const createdGuess = await nameTargetModel.createNameTarget(inputGuess);
     return res.status(HttpStatus.OK).json(toDtoCreate(createdGuess));
