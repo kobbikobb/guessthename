@@ -43,7 +43,7 @@ const addGuess = async (req: Request, res: Response, next: NextFunction) => {
     if (!nameTarget) {
       throw new Error('Name target does not exist.');
     }
-    const createGuessInput: guessesModel.ICreateGuess = {
+    const createGuessInput: guessesModel.ICreateGuessInput = {
       userId: guessInput.userId,
       name: guessInput.name,
       nameTargetId: guessInput.nameTargetId,
