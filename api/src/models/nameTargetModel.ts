@@ -1,9 +1,9 @@
 import { model, Schema, Model, Document, Types } from 'mongoose';
 
 export interface INameTargetInput {
-  userId: String;
-  title: String;
-  name: String;
+  userId: string;
+  title: string;
+  name: string;
 }
 
 export interface INameTargetModel extends Document {

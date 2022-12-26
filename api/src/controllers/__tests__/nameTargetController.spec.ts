@@ -1,18 +1,16 @@
 import request from 'supertest';
 import app from '../../app';
 import { HttpStatus } from '../../utils/httpUtils';
-import { connect, close, clear } from '../../tests/mongoTestServer';
+import {
+  connect,
+  cleanData,
+  cleanConnections
+} from '../../__helper__/mongo.memory.server.test.helper';
 
 describe('name target controller', () => {
-  beforeAll(async () => {
-    await connect();
-  });
-  afterEach(async () => {
-    await clear();
-  });
-  afterAll(async () => {
-    await close();
-  });
+  beforeAll(connect);
+  beforeEach(cleanData);
+  afterAll(cleanConnections);
 
   it('should add correct name-target', async () => {
     const response = await request(app).post('/name-target').send({
