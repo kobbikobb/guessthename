@@ -4,11 +4,7 @@ import {
   disconnect
 } from '../../__helper__/mongodb.memory.test.helper';
 import { createGuess, getGuesses } from '../guessesModel';
-import {
-  createNameTarget,
-  getNameTargets,
-  findNameTarget
-} from '../nameTargetModel';
+import { createNameTarget } from '../nameTargetModel';
 
 const createANameTarget = () => {
   return createNameTarget({
