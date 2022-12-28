@@ -1,55 +1,69 @@
-import { createGuess, getGuesses } from '../guessesModel';
-import { createNameTarget } from '../nameTargetModel';
 import {
   connect,
   cleanData,
-  cleanConnections
-} from '../../__helper__/mongo.memory.server.test.helper';
+  disconnect
+} from '../../__helper__/mongodb.memory.test.helper';
+import { createGuess, getGuesses } from '../guessesModel';
+import { createNameTarget } from '../nameTargetModel';
 
-const aNameTarget = (
-  userId: string = 'user-123',
-  title: string = 'A title',
-  name: string = 'A name'
-) => {
-  return {
-    userId,
-    title,
-    name
-  };
+const createANameTarget = () => {
+  return createNameTarget({
+    userId: 'some-user-id',
+    title: 'some title',
+    name: 'some name'
+  });
 };
 
 describe('Guess Model', () => {
   beforeAll(connect);
   beforeEach(cleanData);
-  afterAll(cleanConnections);
+  afterAll(disconnect);
+
+  it('should create a guess', async () => {
+    const nameTarget = await createANameTarget();
+    const guess = await createGuess({
+      userId: 'the-user-id',
+      nameTargetId: nameTarget.id,
+      name: 'Correct Name',
+      isCorrect: true
+    });
+
+    expect(guess).toEqual(
+      expect.objectContaining({
+        userId: 'the-user-id',
+        nameTargetId: nameTarget.id,
+        name: 'Correct Name',
+        isCorrect: true,
+        id: expect.anything()
+      })
+    );
+  });
 
   it('should fetch an empty list of guesses', async () => {
-    const nameTarget = await createNameTarget(aNameTarget());
+    const nameTarget = await createANameTarget();
     const guesses = await getGuesses(nameTarget.id);
     expect(guesses).toHaveLength(0);
   });
 
-  it('should fetch a list with one guess', async () => {
-    const nameTarget = await createNameTarget(aNameTarget());
+  it('should fetch a list with a guess', async () => {
+    const nameTarget = await createANameTarget();
     const guess = await createGuess({
-      userId: 'abc-134',
+      userId: 'the-user-id',
       nameTargetId: nameTarget.id,
-      name: 'Incorrect',
-      isCorrect: false
+      name: 'Correct Name',
+      isCorrect: true
     });
+
     const guesses = await getGuesses(nameTarget.id);
 
-    expect(guesses).toHaveLength(1);
     expect(guesses).toContainEqual(
       expect.objectContaining({
-        userId: 'abc-134',
+        userId: 'the-user-id',
         nameTargetId: nameTarget.id,
-        name: 'Incorrect',
-        isCorrect: false,
-        id: guess.id,
-        createdAt: expect.anything()
+        name: 'Correct Name',
+        isCorrect: true,
+        id: guess.id
       })
     );
   });
-  
 });
