@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { HttpStatus } from '../utils/httpUtils';
 import * as nameTargetModel from '../models/nameTargetModel';
 import * as guessesModel from '../models/guessesModel';
@@ -9,24 +9,41 @@ export interface IGuessInput {
   nameTargetId: string;
 }
 
+interface ICreatedGuessDto {
+  id: string;
+  userId: string;
+  nameTargetId: string;
+  name: string;
+  isCorrect: boolean;
+}
+
+interface IGuessDto {
+  id: string;
+  userId: string;
+  nameTargetId: string;
+  name: string;
+}
+
 const parseGuessFromBody = (body: any): IGuessInput => {
-  const guessInput = {
+  const guessInput: IGuessInput = {
     userId: body.userId as string,
     nameTargetId: body.nameTargetId as string,
     name: body.name as string
-  } as IGuessInput;
-  if (!guessInput.userId) {
+  };
+  if (guessInput.userId === '') {
     throw new Error('The field: userId is required.');
   }
-  if (!guessInput.nameTargetId) {
+  if (guessInput.nameTargetId === '') {
     throw new Error('The field: nameTargetId is required.');
   }
   return guessInput;
 };
 
-const toCreatedGuessDto = (guess: guessesModel.IGuessModel) => {
+const toCreatedGuessDto = (
+  guess: guessesModel.IGuessModel
+): ICreatedGuessDto => {
   return {
-    id: guess._id,
+    id: guess.id,
     userId: guess.userId,
     nameTargetId: guess.nameTargetId,
     name: guess.name,
@@ -34,13 +51,13 @@ const toCreatedGuessDto = (guess: guessesModel.IGuessModel) => {
   };
 };
 
-const addGuess = async (req: Request, res: Response, next: NextFunction) => {
+const addGuess = async (req: Request, res: Response): Promise<any> => {
   try {
     const guessInput = parseGuessFromBody(req.body);
     const nameTarget = await nameTargetModel.findNameTarget(
       guessInput.nameTargetId
     );
-    if (!nameTarget) {
+    if (nameTarget == null) {
       throw new Error('Name target does not exist.');
     }
     const createGuessInput: guessesModel.ICreateGuessInput = {
@@ -56,7 +73,7 @@ const addGuess = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const toGuessesDto = (guess: guessesModel.IGuessModel) => {
+const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
   return {
     id: guess._id,
     userId: guess.userId,
@@ -65,10 +82,10 @@ const toGuessesDto = (guess: guessesModel.IGuessModel) => {
   };
 };
 
-const getGuesses = async (req: Request, res: Response) => {
+const getGuesses = async (req: Request, res: Response): Promise<any> => {
   try {
     const nameTargetId = req.query.nameTargetId as string;
-    if (!nameTargetId) {
+    if (nameTargetId === null) {
       return res
         .status(HttpStatus.BAD_REQUEST)
         .json({ error: 'The parameter nameTargetId is required.' });

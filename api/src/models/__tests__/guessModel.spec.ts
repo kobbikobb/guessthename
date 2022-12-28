@@ -4,10 +4,10 @@ import {
   disconnect
 } from '../../__helper__/mongodb.memory.test.helper';
 import { createGuess, getGuesses } from '../guessesModel';
-import { createNameTarget } from '../nameTargetModel';
+import { createNameTarget, INameTargetModel } from '../nameTargetModel';
 
-const createANameTarget = () => {
-  return createNameTarget({
+const createANameTarget = async (): Promise<INameTargetModel> => {
+  return await createNameTarget({
     userId: 'some-user-id',
     title: 'some title',
     name: 'some name'
