@@ -16,9 +16,9 @@ export interface ICreateGuess {
 }
 
 export interface IGuessModel extends Document {
-  userId: String;
-  nameTargetId: String;
-  name: String;
+  userId: string;
+  nameTargetId: string;
+  name: string;
   isCorrect: boolean;
   createdAt: Date;
 }
@@ -35,10 +35,10 @@ export const GuessesSchema: Schema<IGuessModel> = new Schema(
 
 export const Guesses: Model<IGuessModel> = model('Guesses', GuessesSchema);
 
-export const createGuess = (guess: ICreateGuessInput) => {
-  return Guesses.create(guess);
+export const createGuess = async (guess: ICreateGuessInput): Promise<IGuessModel> => {
+  return await Guesses.create(guess);
 };
 
-export const getGuesses = async (nameTargetId: string) => {
-  return Guesses.find({ nameTargetId });
+export const getGuesses = async (nameTargetId: string): Promise<IGuessModel[]> => {
+  return await Guesses.find({ nameTargetId });
 };

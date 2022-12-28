@@ -7,9 +7,9 @@ export interface INameTargetInput {
 }
 
 export interface INameTargetModel extends Document {
-  userId: String;
-  title: String;
-  name: String;
+  userId: string;
+  title: string;
+  name: string;
   createdAt: Date;
 }
 
@@ -27,17 +27,17 @@ export const NameTargets: Model<INameTargetModel> = model(
   NameTargetsSchema
 );
 
-export const createNameTarget = (guess: INameTargetInput) => {
-  return NameTargets.create(guess);
+export const createNameTarget = async (guess: INameTargetInput): Promise<INameTargetModel> => {
+  return await NameTargets.create(guess);
 };
 
-export const getNameTargets = async () => {
-  return NameTargets.find({});
+export const getNameTargets = async (): Promise<INameTargetModel[]> => {
+  return await NameTargets.find({});
 };
 
-export const findNameTarget = async (id: string) => {
+export const findNameTarget = async (id: string): Promise<INameTargetModel | null> => {
   if (!Types.ObjectId.isValid(id)) {
     return null;
   }
-  return NameTargets.findById(new Types.ObjectId(id));
+  return await NameTargets.findById(new Types.ObjectId(id));
 };
