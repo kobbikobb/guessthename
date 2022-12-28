@@ -35,10 +35,14 @@ export const GuessesSchema: Schema<IGuessModel> = new Schema(
 
 export const Guesses: Model<IGuessModel> = model('Guesses', GuessesSchema);
 
-export const createGuess = async (guess: ICreateGuessInput): Promise<IGuessModel> => {
+export const createGuess = async (
+  guess: ICreateGuessInput
+): Promise<IGuessModel> => {
   return await Guesses.create(guess);
 };
 
-export const getGuesses = async (nameTargetId: string): Promise<IGuessModel[]> => {
+export const getGuesses = async (
+  nameTargetId: string
+): Promise<IGuessModel[]> => {
   return await Guesses.find({ nameTargetId });
 };

@@ -8,16 +8,18 @@ interface ICreatedNameTargetDto {
   title: string;
   name: string;
   createdAt: Date;
-};
+}
 
 interface INameTargetDto {
   id: string;
   userId: string;
   title: string;
   createdAt: Date;
-};
+}
 
-const toDtoCreate = (nameTarget: nameTargetModel.INameTargetModel): ICreatedNameTargetDto => {
+const toDtoCreate = (
+  nameTarget: nameTargetModel.INameTargetModel
+): ICreatedNameTargetDto => {
   return {
     id: nameTarget._id,
     userId: nameTarget.userId,
@@ -27,7 +29,9 @@ const toDtoCreate = (nameTarget: nameTargetModel.INameTargetModel): ICreatedName
   };
 };
 
-const toDtoList = (nameTarget: nameTargetModel.INameTargetModel): INameTargetDto => {
+const toDtoList = (
+  nameTarget: nameTargetModel.INameTargetModel
+): INameTargetDto => {
   return {
     id: nameTarget._id,
     userId: nameTarget.userId,

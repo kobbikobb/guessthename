@@ -15,14 +15,14 @@ interface ICreatedGuessDto {
   nameTargetId: string;
   name: string;
   isCorrect: boolean;
-};
+}
 
 interface IGuessDto {
   id: string;
   userId: string;
   nameTargetId: string;
   name: string;
-};
+}
 
 const parseGuessFromBody = (body: any): IGuessInput => {
   const guessInput: IGuessInput = {
@@ -39,7 +39,9 @@ const parseGuessFromBody = (body: any): IGuessInput => {
   return guessInput;
 };
 
-const toCreatedGuessDto = (guess: guessesModel.IGuessModel): ICreatedGuessDto => {
+const toCreatedGuessDto = (
+  guess: guessesModel.IGuessModel
+): ICreatedGuessDto => {
   return {
     id: guess.id,
     userId: guess.userId,

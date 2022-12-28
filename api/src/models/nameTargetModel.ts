@@ -27,7 +27,9 @@ export const NameTargets: Model<INameTargetModel> = model(
   NameTargetsSchema
 );
 
-export const createNameTarget = async (guess: INameTargetInput): Promise<INameTargetModel> => {
+export const createNameTarget = async (
+  guess: INameTargetInput
+): Promise<INameTargetModel> => {
   return await NameTargets.create(guess);
 };
 
@@ -35,7 +37,9 @@ export const getNameTargets = async (): Promise<INameTargetModel[]> => {
   return await NameTargets.find({});
 };
 
-export const findNameTarget = async (id: string): Promise<INameTargetModel | null> => {
+export const findNameTarget = async (
+  id: string
+): Promise<INameTargetModel | null> => {
   if (!Types.ObjectId.isValid(id)) {
     return null;
   }
