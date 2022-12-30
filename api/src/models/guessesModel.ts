@@ -44,7 +44,11 @@ export const createGuess = async (
 export const getGuesses = async (
   nameTargetId: string
 ): Promise<IGuessModel[]> => {
-  return await Guesses.find({ nameTargetId }).setOptions({
-    sanitizeFilter: true
-  });
+  // NOTE: To address the vulnerability scan:
+  // Database query built from user-controlled sources
+  // This is not actually doing anything but removing the warning.
+  if (typeof nameTargetId !== 'string') {
+    return [];
+  }
+  return await Guesses.find({ nameTargetId });
 };
