@@ -5,8 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "nodemon src/server.ts",
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "prettier-check": "prettier --config .prettierrc 'src/**/*.ts' --list-different",
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --list-different",
+    "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "build": "rm -rf dist/ && tsc --project tsconfig.build.json",
