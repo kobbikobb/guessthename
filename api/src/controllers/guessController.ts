@@ -57,7 +57,7 @@ const addGuess = async (req: Request, res: Response): Promise<any> => {
     const nameTarget = await nameTargetModel.findNameTarget(
       guessInput.nameTargetId
     );
-    if (nameTarget == null) {
+    if (nameTarget === null) {
       throw new Error('Name target does not exist.');
     }
     const createGuessInput: guessesModel.ICreateGuessInput = {
@@ -85,7 +85,7 @@ const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
 const getGuesses = async (req: Request, res: Response): Promise<any> => {
   try {
     const nameTargetId = req.query.nameTargetId as string;
-    if (nameTargetId === null) {
+    if (nameTargetId === undefined) {
       return res
         .status(HttpStatus.BAD_REQUEST)
         .json({ error: 'The parameter nameTargetId is required.' });
