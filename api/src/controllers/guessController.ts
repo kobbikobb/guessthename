@@ -36,6 +36,9 @@ const parseGuessFromBody = (body: any): IGuessInput => {
   if (guessInput.nameTargetId === '') {
     throw new Error('The field: nameTargetId is required.');
   }
+  if (guessInput.name === '') {
+    throw new Error('The field: name is required.');
+  }
   return guessInput;
 };
 

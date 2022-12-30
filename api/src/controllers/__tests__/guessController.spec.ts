@@ -18,17 +18,17 @@ describe('Guess Controller', () => {
     let nameTargetId: string;
 
     beforeEach(async () => {
-      const createdResponse = await request(app).post('/name-target')
-        .send({
-          userId: 'the-user-id',
-          title: 'A title',
-          name: correctName
-        });
+      const createdResponse = await request(app).post('/name-target').send({
+        userId: 'the-user-id',
+        title: 'A title',
+        name: correctName
+      });
       nameTargetId = createdResponse.body.id;
     });
 
     it('should create an incorrect guess', async () => {
-      const response = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const response = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: 'the-user-id',
           nameTargetId,
@@ -46,7 +46,8 @@ describe('Guess Controller', () => {
     });
 
     it('should create a correct guess', async () => {
-      const response = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const response = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: 'the-user-id',
           nameTargetId,
@@ -64,7 +65,8 @@ describe('Guess Controller', () => {
     });
 
     it('should not create a guess when userId is missing', async () => {
-      const response = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const response = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: '',
           nameTargetId,
@@ -75,7 +77,8 @@ describe('Guess Controller', () => {
     });
 
     it('should not create a guess when name is missing', async () => {
-      const response = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const response = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: 'the-user-id',
           nameTargetId,
@@ -86,40 +89,46 @@ describe('Guess Controller', () => {
     });
 
     it('should fetch an empty list of guesses when name target does exist', async () => {
-      const response = await request(app).get(`/guess?nameTargetId=${nameTargetId}`);
+      const response = await request(app).get(
+        `/guess?nameTargetId=${nameTargetId}`
+      );
 
       expect(response.statusCode).toBe(HttpStatus.OK);
       expect(response.body).toEqual({ results: [] });
     });
 
     it('should fetch a list of one guess', async () => {
-      const createdResponse = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const createdResponse = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: 'the-user-id',
           nameTargetId,
           name: correctName
         });
 
-      const response = await request(app).get(`/guess?nameTargetId=${nameTargetId}`);
+      const response = await request(app).get(
+        `/guess?nameTargetId=${nameTargetId}`
+      );
 
       expect(response.statusCode).toBe(HttpStatus.OK);
       expect(response.body).toEqual({
-        results: [{
-          userId: 'the-user-id',
-          nameTargetId,
-          name: correctName,
-          id: createdResponse.body.id
-        }]
+        results: [
+          {
+            userId: 'the-user-id',
+            nameTargetId,
+            name: correctName,
+            id: createdResponse.body.id
+          }
+        ]
       });
     });
 
     it('should not fetch guesses by using nosql injection', async () => {
-      await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
-        .send({
-          userId: 'the-user-id',
-          nameTargetId,
-          name: correctName
-        });
+      await request(app).post(`/guess?nameTargetId=${nameTargetId}`).send({
+        userId: 'the-user-id',
+        nameTargetId,
+        name: correctName
+      });
 
       const response = await request(app).get('/guess?nameTargetId={$ne:1}');
 
@@ -132,7 +141,8 @@ describe('Guess Controller', () => {
     it('should not create a guess when name target does not exist', async () => {
       const nameTargetId = 'something-that-does-not-exist';
 
-      const response = await request(app).post(`/guess?nameTargetId=${nameTargetId}`)
+      const response = await request(app)
+        .post(`/guess?nameTargetId=${nameTargetId}`)
         .send({
           userId: 'the-user-id',
           nameTargetId,
@@ -143,12 +153,11 @@ describe('Guess Controller', () => {
     });
 
     it('should not create a guess when name target is missing', async () => {
-      const response = await request(app).post('/guess?nameTargetId=')
-        .send({
-          userId: 'the-user-id',
-          nameTargetId: '',
-          name: ''
-        });
+      const response = await request(app).post('/guess?nameTargetId=').send({
+        userId: 'the-user-id',
+        nameTargetId: '',
+        name: ''
+      });
 
       expect(response.statusCode).toBe(HttpStatus.BAD_REQUEST);
     });
@@ -161,7 +170,9 @@ describe('Guess Controller', () => {
     it('should fetch an empty list of guesses when name target does not exist', async () => {
       const nameTargetId = 'something-that-does-not-exist';
 
-      const response = await request(app).get(`/guess?nameTargetId=${nameTargetId}`);
+      const response = await request(app).get(
+        `/guess?nameTargetId=${nameTargetId}`
+      );
 
       expect(response.statusCode).toBe(HttpStatus.OK);
       expect(response.body).toEqual({ results: [] });
