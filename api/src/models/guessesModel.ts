@@ -44,5 +44,7 @@ export const createGuess = async (
 export const getGuesses = async (
   nameTargetId: string
 ): Promise<IGuessModel[]> => {
-  return await Guesses.find({ nameTargetId });
+  return await Guesses.find({ nameTargetId }).setOptions({
+    sanitizeFilter: true
+  });
 };
