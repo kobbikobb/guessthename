@@ -36,6 +36,9 @@ const parseGuessFromBody = (body: any): IGuessInput => {
   if (guessInput.nameTargetId === '') {
     throw new Error('The field: nameTargetId is required.');
   }
+  if (guessInput.name === '') {
+    throw new Error('The field: name is required.');
+  }
   return guessInput;
 };
 
@@ -57,7 +60,7 @@ const addGuess = async (req: Request, res: Response): Promise<any> => {
     const nameTarget = await nameTargetModel.findNameTarget(
       guessInput.nameTargetId
     );
-    if (nameTarget == null) {
+    if (nameTarget === null) {
       throw new Error('Name target does not exist.');
     }
     const createGuessInput: guessesModel.ICreateGuessInput = {
@@ -85,7 +88,7 @@ const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
 const getGuesses = async (req: Request, res: Response): Promise<any> => {
   try {
     const nameTargetId = req.query.nameTargetId as string;
-    if (nameTargetId === null) {
+    if (nameTargetId === undefined) {
       return res
         .status(HttpStatus.BAD_REQUEST)
         .json({ error: 'The parameter nameTargetId is required.' });
