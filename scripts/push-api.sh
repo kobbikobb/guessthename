@@ -7,4 +7,3 @@ docker push $ECR_REGISTRY/guessthename_api:$COMMIT
 docker push $ECR_REGISTRY/guessthename_api:latest
 
 echo "Image pushed $ECR_REGISTRY/guessthename_api:$COMMIT"
-echo "cool"

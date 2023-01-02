@@ -6,4 +6,4 @@ docker run -d \
 -p 3001:80 \
 -e API_BASE_URL="http://localhost:3000" \
 --network=guess-network \
-kobbikobb/guessthename_frontend:$COMMIT
+public.ecr.aws/q3b8h4t9/guessthename_frontend:$COMMIT

@@ -28,12 +28,12 @@ docker run -d \
 -p 3000:3000 \
 -e MONGO_DB_URI="mongodb://guess-mongo/api" \
 --network=guess-network \
-kobbikobb/guessthename_api:2c1a99a750ecf7a31420a5af988005057f78cb25
+public.ecr.aws/q3b8h4t9/guessthename_api:2c1a99a750ecf7a31420a5af988005057f78cb25
 
 docker run -d \
 -p 3001:80 \
 -e API_BASE_URL="http://54.75.123.20:3000" \
 --network=guess-network \
-kobbikobb/guessthename_frontend:2c1a99a750ecf7a31420a5af988005057f78cb25
+public.ecr.aws/q3b8h4t9guessthename_frontend:2c1a99a750ecf7a31420a5af988005057f78cb25
 
 ```
