@@ -1,7 +1,10 @@
 #!/bin/bash
 
 COMMIT=$(git rev-parse --verify HEAD)
-echo "Pushing guessthename_api and latest to dockerhub #$COMMIT"
+echo "Pushing the image $ECR_REGISTRY/guessthename_api:$COMMIT"
 
-docker push kobbikobb/guessthename_api:$COMMIT
-docker push kobbikobb/guessthename_api:latest
+docker push $ECR_REGISTRY/guessthename_api:$COMMIT
+docker push $ECR_REGISTRY/guessthename_api:latest
+
+echo "Image pushed $ECR_REGISTRY/guessthename_api:$COMMIT"
+echo "cool"

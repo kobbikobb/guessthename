@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "ecr" ]
   
 jobs:
   docker:
@@ -11,22 +11,26 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build frontend
-        run: ./scripts/build-frontend.sh
-      -
-        name: Build backend
-        run: ./scripts/build-api.sh
-      -
-        name: Push frontend
-        run: ./scripts/push-frontend.sh
-      -
-        name: Push backend
-        run: ./scripts/push-api.sh
-  
+          aws-access-key-id: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ECR_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon Public ECR
+        id: login-ecr-public
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registry-type: public
+
+      - name: Build images push images
+        env:
+          ECR_REGISTRY: ${{ format('{0}/{1}', steps.login-ecr-public.outputs.registry, secrets.AWS_ECR_NAMESPACE) }}
+        run: |
+          ./scripts/build-frontend.sh
+          ./scripts/build-api.sh
+          ./scripts/push-frontend.sh
+          ./scripts/push-api.sh
+          
