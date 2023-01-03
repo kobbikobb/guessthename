@@ -8,6 +8,7 @@ DockerMachine - https://docs.docker.com/engine/install/
 DockerCompose - https://docs.docker.com/compose/install/
 Git - Ubuntu: sudo apt install git
 Npm - Ubuntu: sudo apt install npm
+Minikube - https://minikube.sigs.k8s.io/docs/start/
 
 ### For Mac
 Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
