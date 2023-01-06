@@ -1,7 +1,8 @@
 #!/bin/bash
 
-COMMIT=$(git rev-parse --verify HEAD)
+source scripts/variables.sh
+
 echo "Pushing guessthename_api and latest to dockerhub #$COMMIT"
 
-docker push kobbikobb/guessthename_api:$COMMIT
-docker push kobbikobb/guessthename_api:latest
+docker push $ECR_BASE_PATH/guessthename_api:$COMMIT
+docker push $ECR_BASE_PATH/guessthename_api:latest
