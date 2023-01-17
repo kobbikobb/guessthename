@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
   
 jobs:
-  docker:
+  build-and-push-images:
     runs-on: ubuntu-latest
     steps:
       -
@@ -26,11 +26,21 @@ jobs:
           registry-type: public
       -
         name: Build and push images
-        env:
-          ECR_BASE_PATH: ${{ format('{0}/{1}', steps.login-ecr-public.outputs.registry, secrets.AWS_NAMESPACE) }}
         run: |
           ./scripts/build-frontend.sh
           ./scripts/build-api.sh
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
+      -
+        name: Deploy the app
+        run: |
+            aws deploy create-deployment \
+            --application-name guessthename \
+            --deployment-group-name guessthename-dev \
+            --s3-location bucket=guessthename.codedeploy.bucket,key=code-deploy-docker-compose.zip,bundleType=zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ECR_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ECR_SECRET }}
+          AWS_DEFAULT_REGION: us-east-1
+
   

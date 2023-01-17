@@ -33,7 +33,7 @@ const NameTargetOverview = ({ userId }: Props) => {
         style={{
           display: 'flex',
           justifyContent: 'space-between',
-          paddingBottom: '16px'
+          paddingBottom: '16px',
         }}
       >
         <h2>Name Targets</h2>
