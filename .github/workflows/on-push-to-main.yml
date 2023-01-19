@@ -31,6 +31,9 @@ jobs:
           ./scripts/build-api.sh
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
+  deploy-to-ecr:
+    runs-on: ubuntu-latest
+    steps:
       -
         name: Deploy the app
         run: |
