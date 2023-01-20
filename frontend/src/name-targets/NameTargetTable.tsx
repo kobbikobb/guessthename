@@ -32,7 +32,7 @@ export default function NameTargetTable({ data }: Props) {
   );
 
   if(data.length === 0) {
-    return <div style={{fontStyle: 'italic'}}>No name targets :O A name target is a name to be guessed, please create one! </div>;
+    return <div style={{fontStyle: 'italic'}}>New Deployment here!! A name target is a name to be guessed, please create one! </div>;
   }
   
   return <Table columns={columns} data={data} />;
