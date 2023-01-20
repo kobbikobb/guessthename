@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   
 jobs:
+
   build-and-push-images:
     runs-on: ubuntu-latest
     steps:
@@ -31,8 +32,10 @@ jobs:
           ./scripts/build-api.sh
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
-  deploy-to-ecr:
+
+  deploy-to-aws:
     runs-on: ubuntu-latest
+    needs: [build-and-push-images]
     steps:
       -
         name: Deploy the app
@@ -45,5 +48,3 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEPLOY_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEPLOY_SECRET }}
           AWS_DEFAULT_REGION: us-east-1
-
-  
