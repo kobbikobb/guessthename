@@ -31,19 +31,6 @@ jobs:
           ./scripts/build-api.sh
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
-  deploy-to-ecr:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Deploy the app
-        run: |
-            aws deploy create-deployment \
-            --application-name guessthename \
-            --deployment-group-name guessthename-dev \
-            --s3-location bucket=guessthename.codedeploy.bucket,key=code-deploy-docker-compose.zip,bundleType=zip
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEPLOY_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEPLOY_SECRET }}
-          AWS_DEFAULT_REGION: us-east-1
+
 
   
