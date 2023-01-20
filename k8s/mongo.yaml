@@ -30,7 +30,6 @@ spec:
               secretKeyRef:
                 name: mongodb-secret
                 key: mongo-root-password
-                volumeMounts:
           volumeMounts:
           - name: "mongo-pvc-volume"
             mountPath: "/data/db"
