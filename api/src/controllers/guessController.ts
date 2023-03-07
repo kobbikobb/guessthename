@@ -1,14 +1,8 @@
 import { Request, Response } from 'express';
 import { HttpStatus } from '../utils/httpUtils';
-import * as nameTargetModel from '../models/nameTargetModel';
 import * as guessesModel from '../models/guessesModel';
 import { badRequest } from '../utils/errors';
-
-export interface IGuessInput {
-  userId: string;
-  name: string;
-  nameTargetId: string;
-}
+import { addGuess, IGuessInput } from '../utils/guessService';
 
 interface ICreatedGuessDto {
   id: string;
@@ -55,22 +49,11 @@ const toCreatedGuessDto = (
   };
 };
 
-const addGuess = async (req: Request, res: Response): Promise<Response> => {
-  const guessInput = parseGuessFromBody(req);
-  const nameTarget = await nameTargetModel.findNameTarget(
-    guessInput.nameTargetId
-  );
-  if (nameTarget === null) {
-    throw badRequest('Name target does not exist.');
-  }
-  const createGuessInput: guessesModel.ICreateGuessInput = {
-    userId: guessInput.userId,
-    name: guessInput.name,
-    nameTargetId: guessInput.nameTargetId,
-    isCorrect: guessInput.name === nameTarget.name
-  };
-  const createdGuess = await guessesModel.createGuess(createGuessInput);
-  return res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
+
+const postGuess = async (req: Request, res: Response): Promise<Response> => {
+    const guessInput = parseGuessFromBody(req);
+    const createdGuess = await addGuess(guessInput);
+    return res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
 };
 
 const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
@@ -93,4 +76,4 @@ const getGuesses = async (req: Request, res: Response): Promise<Response> => {
   });
 };
 
-export default { addGuess, getGuesses };
+export default { postGuess, getGuesses };

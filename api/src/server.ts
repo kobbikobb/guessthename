@@ -11,6 +11,7 @@ const connectToDatabase = async (): Promise<void> => {
   try {
     console.log('Connecting to Mongo!');
     const uri = `mongodb://${user}:${pass}@${mongoServer}:27017/api?authSource=admin`;
+    mongoose.set('strictQuery', false);
     await mongoose.connect(mongoDbUri ?? uri);
 
     console.log('Connected to Mongo!');
