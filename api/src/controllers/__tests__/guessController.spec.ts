@@ -37,7 +37,7 @@ describe('Guess Controller', () => {
 
       expect(response.statusCode).toBe(HttpStatus.OK);
       expect(response.body).toEqual({
-           userId: 'the-user-idff',
+           userId: 'the-user-idff  d',
         nameTargetId,
         name: incorrectName,
         id: response.body.id,
