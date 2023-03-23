@@ -1,12 +1,14 @@
-import express, { Express } from 'express';
+import express, { Express, NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import { HttpStatus } from './utils/httpUtils';
-import guessRoutes from './routes/guessRoutes';
-import nameTargetRoutes from './routes/nameTargetRoutes';
-
 import cors from 'cors';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
+import 'express-async-errors';
+
+import { HttpStatus } from './utils/httpUtils';
+import guessRoutes from './routes/guessRoutes';
+import nameTargetRoutes from './routes/nameTargetRoutes';
+import { HttpError } from './utils/errors';
 
 const app: Express = express();
 
@@ -47,10 +49,22 @@ app.use('/', guessRoutes);
 app.use('/', nameTargetRoutes);
 
 // Not found route
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   return res.status(HttpStatus.NOT_FOUND).json({
     message: 'Not found'
   });
+});
+
+app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+  if (err.statusCode !== null) {
+    return res
+      .status(err.statusCode)
+      .json({
+        error: err.message
+      })
+      .send();
+  }
+  next();
 });
 
 export default app;
