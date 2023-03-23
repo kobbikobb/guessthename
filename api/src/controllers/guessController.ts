@@ -49,11 +49,10 @@ const toCreatedGuessDto = (
   };
 };
 
-
 const postGuess = async (req: Request, res: Response): Promise<Response> => {
-    const guessInput = parseGuessFromBody(req);
-    const createdGuess = await addGuess(guessInput);
-    return res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
+  const guessInput = parseGuessFromBody(req);
+  const createdGuess = await addGuess(guessInput);
+  return res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
 };
 
 const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {

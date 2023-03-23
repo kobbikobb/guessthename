@@ -8,7 +8,9 @@ export interface IGuessInput {
   nameTargetId: string;
 }
 
-export const addGuess = async (guessInput: IGuessInput): Promise<any> => {
+export const addGuess = async (
+  guessInput: IGuessInput
+): Promise<guessesModel.IGuessModel> => {
   const nameTarget = await nameTargetModel.findNameTarget(
     guessInput.nameTargetId
   );
