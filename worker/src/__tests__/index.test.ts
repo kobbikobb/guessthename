@@ -1,7 +1,7 @@
-import { isRunning } from "..";
+import { isRunning } from '..';
 
-describe('index', () =>{
-    it('should be running', () => {
-        expect(isRunning()).toEqual(true);
-    });
+describe('index', () => {
+  it('should be running', () => {
+    expect(isRunning()).toEqual(true);
+  });
 });
