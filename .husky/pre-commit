@@ -3,16 +3,20 @@
 
 cd api
 
-echo "Checking API"
-npm run prettier
-npm run lint
-npm run test
+if [[ `git status --porcelain` ]]; then
+    echo "Checking API"
+    npm run prettier
+    npm run lint
+    npm run test
+fi
 
 cd ..
 cd worker
-echo "Checking WORKER"
 
-npm run prettier
-npm run lint
-npm run test
+if [[ `git status --porcelain` ]]; then
+    echo "Checking WORKER"
+    npm run prettier
+    npm run lint
+    npm run test
+fi
 
