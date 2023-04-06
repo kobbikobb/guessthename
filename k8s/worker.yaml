@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+  labels:
+    app: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+      - name: worker
+        image: public.ecr.aws/q3b8h4t9/guessthename_worker:{{COMMIT}}
+        ports:
+        - containerPort: 3099
+        imagePullPolicy: Always
