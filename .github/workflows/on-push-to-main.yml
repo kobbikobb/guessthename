@@ -31,9 +31,11 @@ jobs:
         run: |
           ./scripts/build-frontend.sh
           ./scripts/build-api.sh
+          ./scripts/build-worker.sh
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
-
+          ./scripts/push-worker.sh
+          
   deploy-to-aws:
     if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
