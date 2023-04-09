@@ -5,7 +5,7 @@
 ./scripts/build-worker.sh
 
 ./scripts/docker-login.sh
-./scripts/push-backend.sh
+./scripts/push-api.sh
 ./scripts/push-frontend.sh
 ./scripts/push-worker.sh
 
