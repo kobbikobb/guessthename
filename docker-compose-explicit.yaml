@@ -26,7 +26,7 @@ services:
       - api
 
   worker:
-    build: public.ecr.aws/q3b8h4t9/guessthename_worker:latest
+    image: public.ecr.aws/q3b8h4t9/guessthename_worker:latest
     container_name: worker
     restart: always
 
