@@ -57,6 +57,12 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - docker-compose up --build
 - docker-compose --file docker-compose-explicit.yaml up
 
+### Build locally
+See: https://minikube.sigs.k8s.io/docs/handbook/registry/
+minikube addons enable registry
+docker run --rm -it --network=host alpine ash -c "apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:$(minikube ip):5000"
+export REGISTRY_BASE_PATH=localhost:5000
+
 ### Useful
 - telepresence leave service-name
 - Useful when intercept is not working: telepresence uninstall --everything

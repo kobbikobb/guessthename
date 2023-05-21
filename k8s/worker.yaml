@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: public.ecr.aws/q3b8h4t9/guessthename_worker:{{COMMIT}}
+        image: {{REGISTRY_BASE_PATH}}/guessthename_worker:{{COMMIT}}
         ports:
         - containerPort: 3099
         imagePullPolicy: Always
