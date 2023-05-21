@@ -18,7 +18,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - minikube start    
 - minikube addons enable ingress
 - kubectl get pods -n ingress-nginx (verify you have ingress)
-- ./build-and-deploy.sh (you will need to login to dockerhub)
+- ./scripts/k8s/deploy.sh
 - kubectl get ingress
 - Navigate to the url in a browser
 
@@ -68,12 +68,12 @@ export REGISTRY_BASE_PATH=localhost:5000
 - Useful when intercept is not working: telepresence uninstall --everything
 - Useful when intercept is not working: hard refresh
 - Images are tagged with commit ID, add a commit before building and deploying
+- Select aws profile: export AWS_PROFILE=user1
 
 ## TODO
 - Configure the name to guess (draft in https://excalidraw.com/)
 - Deploy frontend without webpack on nginx
 - Capture logging
 - host: guessthename.com
-- Stop building latest, use only by commit
 - Should npm run dev from frontend open up nginx?
 - Test teleprecense experience
