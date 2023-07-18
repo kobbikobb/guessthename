@@ -1,18 +1,14 @@
 import http from 'http';
 import app from './app';
 import mongoose from 'mongoose';
+import { getMongoDbUriFromEnv } from './utils/envUtils';
 
 const connectToDatabase = async (): Promise<void> => {
-  const user = process.env.ME_CONFIG_MONGODB_ADMINUSERNAME ?? '';
-  const pass = process.env.ME_CONFIG_MONGODB_ADMINPASSWORD ?? '';
-  const mongoServer = process.env.ME_CONFIG_MONGODB_SERVER ?? 'mongo';
-  const mongoDbUri = process.env.MONGO_DB_URI;
-
   try {
     console.log('Connecting to Mongo!');
-    const uri = `mongodb://${user}:${pass}@${mongoServer}:27017/api?authSource=admin`;
+
     mongoose.set('strictQuery', false);
-    await mongoose.connect(mongoDbUri ?? uri);
+    await mongoose.connect(getMongoDbUriFromEnv());
 
     console.log('Connected to Mongo!');
   } catch (error) {
