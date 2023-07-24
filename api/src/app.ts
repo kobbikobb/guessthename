@@ -9,6 +9,7 @@ import { HttpStatus } from './utils/httpUtils';
 import guessRoutes from './routes/guessRoutes';
 import nameTargetRoutes from './routes/nameTargetRoutes';
 import { HttpError } from './utils/errors';
+import logger from './logger';
 
 const app: Express = express();
 
@@ -55,7 +56,10 @@ app.use((req: Request, res: Response) => {
   });
 });
 
+// Error handlng middleware
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+  logger.error('An error occurred:', err);
+
   if (err.statusCode !== null) {
     return res
       .status(err.statusCode)

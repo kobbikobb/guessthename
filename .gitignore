@@ -1,3 +1,4 @@
 .gitconfig
 .DS_Store
 /src/.DS_Store
+app.log
