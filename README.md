@@ -54,6 +54,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - From frontend run: npm run dev
 
 ### Docker compose
+- Make sure docker deamon is running f.x. colima start
 - docker-compose up --build
 - docker-compose --file docker-compose-explicit.yaml up
 
@@ -77,3 +78,4 @@ export REGISTRY_BASE_PATH=localhost:5000
 - host: guessthename.com
 - Should npm run dev from frontend open up nginx?
 - Test teleprecense experience
+- Connect winston to cloud watch
