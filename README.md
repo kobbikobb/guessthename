@@ -79,3 +79,4 @@ export REGISTRY_BASE_PATH=localhost:5000
 - Should npm run dev from frontend open up nginx?
 - Test teleprecense experience
 - Connect winston to cloud watch
+- Worker should not try to connect to queue locally
