@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoSanitize from 'express-mongo-sanitize';
 import rateLimit from 'express-rate-limit';
 import 'express-async-errors';
+import { logger } from './utils/logger';
 
 import { HttpStatus } from './utils/httpUtils';
 import guessRoutes from './routes/guessRoutes';
@@ -50,12 +51,14 @@ app.use('/', nameTargetRoutes);
 
 // Not found route
 app.use((req: Request, res: Response) => {
+  logger.warn('Route not found!');
   return res.status(HttpStatus.NOT_FOUND).json({
     message: 'Not found'
   });
 });
 
 app.use((err: HttpError, req: Request, res: Response, next: NextFunction) => {
+  logger.error('Ups an error!', err);
   if (err.statusCode !== null) {
     return res
       .status(err.statusCode)

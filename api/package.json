@@ -29,7 +29,8 @@
     "mongoose": "^6.12.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "winston": "^3.10.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
