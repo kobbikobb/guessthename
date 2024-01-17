@@ -9,6 +9,7 @@ DockerCompose - https://docs.docker.com/compose/install/
 Git - Ubuntu: sudo apt install git
 Npm - Ubuntu: sudo apt install npm
 Minikube - https://minikube.sigs.k8s.io/docs/start/
+SED - brew install gnu-sed
 
 ### For Mac
 Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
@@ -18,7 +19,7 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - minikube start    
 - minikube addons enable ingress
 - kubectl get pods -n ingress-nginx (verify you have ingress)
-- ./scripts/k8s/deploy.sh
+- ./k8s/deploy.sh
 - kubectl get ingress
 - Navigate to the url in a browser
 

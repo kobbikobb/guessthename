@@ -18,6 +18,8 @@ kubectl apply -f mongo-pvc.yaml
 kubectl apply -f mongo.yaml
 kubectl apply -f mongo-express.yaml
 
+REGISTRY_BASE_PATH=$(printf '%s\n' "$REGISTRY_BASE_PATH" | sed -e 's/[\/&]/\\&/g')
+
 cat api.yaml | sed "s/{{COMMIT}}/$COMMIT/g" | sed "s/{{REGISTRY_BASE_PATH}}/$REGISTRY_BASE_PATH/g" | kubectl apply -f-
 cat frontend.yaml | sed "s/{{COMMIT}}/$COMMIT/g" | sed "s/{{REGISTRY_BASE_PATH}}/$REGISTRY_BASE_PATH/g" | kubectl apply -f-
 cat worker.yaml | sed "s/{{COMMIT}}/$COMMIT/g" | sed "s/{{REGISTRY_BASE_PATH}}/$REGISTRY_BASE_PATH/g" | kubectl apply -f-
