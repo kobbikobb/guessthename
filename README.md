@@ -4,23 +4,33 @@ Guess the name of a child or pet to be named.
 ## Prerequisites
 
 ### Install
-DockerMachine - https://docs.docker.com/engine/install/
-DockerCompose - https://docs.docker.com/compose/install/
-Git - Ubuntu: sudo apt install git
-Npm - Ubuntu: sudo apt install npm
-Minikube - https://minikube.sigs.k8s.io/docs/start/
+- DockerMachine - https://docs.docker.com/engine/install/
+- DockerCompose - https://docs.docker.com/compose/install/
+- Git - Ubuntu: sudo apt install git
+- Npm - Ubuntu: sudo apt install npm
+
+### For Linux
+- Minikube - https://minikube.sigs.k8s.io/docs/start/
 
 ### For Mac
-Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
-Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+- Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+- Rancher Desktop - https://rancherdesktop.io/
+- Ingress controller - https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller/
 
-## Starting the application
+## Run on Minikube - Linux
 - minikube start    
 - minikube addons enable ingress
 - kubectl get pods -n ingress-nginx (verify you have ingress)
-- ./scripts/k8s/deploy.sh
+- ./k8s/deploy.sh
 - kubectl get ingress
-- Navigate to the url in a browser
+- Navigate to localhost:port in the browser
+
+## Run on Rancher Desktop - Mac
+- Run Rancher Desktop
+- kubectl config use-context rancher-desktop
+- ./k8s/deploy.sh
+- Port forward the ingress controller
+- Navigate to localhost:port in the browser
 
 ## Useful commands
 
@@ -71,9 +81,5 @@ export REGISTRY_BASE_PATH=localhost:5000
 - Select aws profile: export AWS_PROFILE=user1
 
 ## TODO
-- Configure the name to guess (draft in https://excalidraw.com/)
-- Deploy frontend without webpack on nginx
 - Capture logging
 - host: guessthename.com
-- Should npm run dev from frontend open up nginx?
-- Test teleprecense experience
