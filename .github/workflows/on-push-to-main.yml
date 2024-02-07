@@ -25,7 +25,7 @@ jobs:
         id: login-ecr-public
         uses: aws-actions/amazon-ecr-login@v1
         with:
-          registry-type: public
+          registry-type: private
       -
         name: Build and push images
         run: |
@@ -35,6 +35,10 @@ jobs:
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
           ./scripts/push-worker.sh
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: github-sample
+          IMAGE_TAG: sample_image
           
   deploy-to-aws:
     if: ${{ false }}  # disable for now
@@ -48,9 +52,6 @@ jobs:
             --application-name guessthename \
             --deployment-group-name guessthename-dev \
             --s3-location bucket=guessthename.codedeploy.bucket,key=code-deploy-docker-compose.zip,bundleType=zip
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEPLOY_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEPLOY_SECRET }}
-          AWS_DEFAULT_REGION: us-east-1
+        
 
   
