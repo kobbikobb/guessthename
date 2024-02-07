@@ -4,23 +4,33 @@ Guess the name of a child or pet to be named.
 ## Prerequisites
 
 ### Install
-DockerMachine - https://docs.docker.com/engine/install/
-DockerCompose - https://docs.docker.com/compose/install/
-Git - Ubuntu: sudo apt install git
-Npm - Ubuntu: sudo apt install npm
-Minikube - https://minikube.sigs.k8s.io/docs/start/
+- DockerMachine - https://docs.docker.com/engine/install/
+- DockerCompose - https://docs.docker.com/compose/install/
+- Git - Ubuntu: sudo apt install git
+- Npm - Ubuntu: sudo apt install npm
+
+### For Linux
+- Minikube - https://minikube.sigs.k8s.io/docs/start/
 
 ### For Mac
-Hyperkit - https://minikube.sigs.k8s.io/docs/drivers/hyperkit/
-Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+- Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+- Rancher Desktop - https://rancherdesktop.io/
+- Ingress controller - https://docs.rancherdesktop.io/how-to-guides/setup-NGINX-Ingress-Controller/
 
-## Starting the application
+## Run on Minikube - Linux
 - minikube start    
 - minikube addons enable ingress
 - kubectl get pods -n ingress-nginx (verify you have ingress)
-- ./build-and-deploy.sh (you will need to login to dockerhub)
+- ./k8s/deploy.sh
 - kubectl get ingress
-- Navigate to the url in a browser
+- Navigate to localhost:port in the browser
+
+## Run on Rancher Desktop - Mac
+- Run Rancher Desktop
+- kubectl config use-context rancher-desktop
+- ./k8s/deploy.sh
+- Port forward the ingress controller
+- Navigate to localhost:port in the browser
 
 ## Useful commands
 
@@ -57,17 +67,19 @@ Grep - brew install grep - PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 - docker-compose up --build
 - docker-compose --file docker-compose-explicit.yaml up
 
+### Build locally
+See: https://minikube.sigs.k8s.io/docs/handbook/registry/
+minikube addons enable registry
+docker run --rm -it --network=host alpine ash -c "apk add socat && socat TCP-LISTEN:5000,reuseaddr,fork TCP:$(minikube ip):5000"
+export REGISTRY_BASE_PATH=localhost:5000
+
 ### Useful
 - telepresence leave service-name
 - Useful when intercept is not working: telepresence uninstall --everything
 - Useful when intercept is not working: hard refresh
 - Images are tagged with commit ID, add a commit before building and deploying
+- Select aws profile: export AWS_PROFILE=user1
 
 ## TODO
-- Configure the name to guess (draft in https://excalidraw.com/)
-- Deploy frontend without webpack on nginx
 - Capture logging
 - host: guessthename.com
-- Stop building latest, use only by commit
-- Should npm run dev from frontend open up nginx?
-- Test teleprecense experience

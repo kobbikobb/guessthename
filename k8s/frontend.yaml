@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: public.ecr.aws/q3b8h4t9/guessthename_frontend:{{COMMIT}}
+        image: {{REGISTRY_BASE_PATH}}/guessthename_frontend:{{COMMIT}}
         ports:
         - containerPort: 80
         imagePullPolicy: Always

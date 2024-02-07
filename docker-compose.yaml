@@ -24,6 +24,11 @@ services:
     links:
       - api
 
+  worker:
+    build: ./worker
+    container_name: worker
+    restart: always
+
   nginx-proxy:
     depends_on:
       - api
