@@ -18,14 +18,14 @@ jobs:
         name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::779377485039:role/github.to.aws.oicd
+          role-to-assume: arn:aws:iam::772142012667:role/Github-role
           aws-region: us-east-1
       -
         name: Login to Amazon public ECR
         id: login-ecr-public
         uses: aws-actions/amazon-ecr-login@v1
         with:
-          registry-type: public
+          registry-type: private
       -
         name: Build and push images
         run: |
@@ -35,6 +35,10 @@ jobs:
           ./scripts/push-frontend.sh
           ./scripts/push-api.sh
           ./scripts/push-worker.sh
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: github-sample
+          IMAGE_TAG: sample_image
           
   deploy-to-aws:
     if: ${{ false }}  # disable for now
