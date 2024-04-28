@@ -3,6 +3,8 @@ import axios from 'axios';
 // @ts-ignore
 const baseUrl = window._env_?.API_BASE_URL;
 
+console.log(`Base url initialized: ${baseUrl}`);
+
 export const createNameTarget = async (
   userId: string,
   name: string,
