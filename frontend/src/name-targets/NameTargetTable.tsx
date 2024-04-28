@@ -34,8 +34,7 @@ export default function NameTargetTable({ data }: Props) {
   if (data.length === 0) {
     return (
       <div style={{ fontStyle: 'italic' }}>
-        New Deployment here!! A name target is a name to be guessed, please
-        create one!{' '}
+        A name target is a name to be guessed, please create one!{' '}
       </div>
     );
   }
