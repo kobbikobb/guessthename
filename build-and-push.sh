@@ -8,5 +8,3 @@
 ./scripts/push-api.sh
 ./scripts/push-frontend.sh
 ./scripts/push-worker.sh
-
-./k8s/deploy.sh

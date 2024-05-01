@@ -6,16 +6,16 @@ Guess the name of a child or pet to be named.
 - Grep: brew install grep (mac)
 
 ## Host
-- [Host on Rancher-Desktop](RANCHER-DESKTOP.md)
-- [Host on Minikube](MINIKUBE.md)
+- [Host on Rancher-Desktop](docs/RANCHER-DESKTOP.md)
+- [Host on Minikube](docs/MINIKUBE.md)
 
 ## Deploy
-- [Deploy with helm](HELM.md)
-- [Deploy with Docker-Compose(DOCKER-COMPOSE.md)
+- [Deploy with helm](docs/HELM.md)
+- [Deploy with Docker-Compose(docs/DOCKER-COMPOSE.md)
 - Deploy with a script: ./k8s/deploy.sh
 
 ## Debug
-- [Debug with Telepresence](TELEPRESENCE.md)
+- [Debug with Telepresence](docs/TELEPRESENCE.md)
 
 ## Useful commands
 

@@ -1,4 +1,4 @@
-# Rancher Desktop
+# Run with Rancher Desktop
 
 ## Install
 - Rancher-Desktop: https://rancherdesktop.io/
