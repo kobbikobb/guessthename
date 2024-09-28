@@ -42,7 +42,7 @@ const toDtoCreate = (
     nameTarget: nameTargetModel.INameTargetModel
 ): ICreatedNameTargetDto => {
     return {
-        id: nameTarget._id,
+        id: nameTarget._id.toString(),
         userId: nameTarget.userId,
         title: nameTarget.title,
         name: nameTarget.name,
@@ -54,7 +54,7 @@ const toDtoList = (
     nameTarget: nameTargetModel.INameTargetModel
 ): INameTargetDto => {
     return {
-        id: nameTarget._id,
+        id: nameTarget._id.toString(),
         userId: nameTarget.userId,
         title: nameTarget.title,
         createdAt: nameTarget.createdAt

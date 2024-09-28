@@ -15,6 +15,14 @@ export default async function globalSetup() {
 
 const cleanDatabase = async (uri: string) => {
     const connection = await mongoose.connect(uri);
-    await connection.connection.db.dropDatabase();
+
+    if (connection.connection && connection.connection.db) {
+        await connection.connection.db.dropDatabase();
+    } else {
+        console.error(
+            'Database connection is not established or db is undefined.'
+        );
+    }
+
     await mongoose.disconnect();
 };
