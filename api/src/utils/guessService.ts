@@ -3,25 +3,25 @@ import * as guessesModel from '../models/guessesModel';
 import { badRequest } from '../utils/errors';
 
 export interface IGuessInput {
-  userId: string;
-  name: string;
-  nameTargetId: string;
+    userId: string;
+    name: string;
+    nameTargetId: string;
 }
 
 export const addGuess = async (
-  guessInput: IGuessInput
+    guessInput: IGuessInput
 ): Promise<guessesModel.IGuessModel> => {
-  const nameTarget = await nameTargetModel.findNameTarget(
-    guessInput.nameTargetId
-  );
-  if (nameTarget === null) {
-    throw badRequest('Name target does not exist.');
-  }
-  const createGuessInput: guessesModel.ICreateGuessInput = {
-    userId: guessInput.userId,
-    name: guessInput.name,
-    nameTargetId: guessInput.nameTargetId,
-    isCorrect: guessInput.name === nameTarget.name
-  };
-  return await guessesModel.createGuess(createGuessInput);
+    const nameTarget = await nameTargetModel.findNameTarget(
+        guessInput.nameTargetId
+    );
+    if (nameTarget === null) {
+        throw badRequest('Name target does not exist.');
+    }
+    const createGuessInput: guessesModel.ICreateGuessInput = {
+        userId: guessInput.userId,
+        name: guessInput.name,
+        nameTargetId: guessInput.nameTargetId,
+        isCorrect: guessInput.name === nameTarget.name
+    };
+    return await guessesModel.createGuess(createGuessInput);
 };
