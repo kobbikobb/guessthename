@@ -1,8 +1,3 @@
-import {
-  connect,
-  cleanData,
-  disconnect
-} from '../../__helper__/mongodb.memory.test.helper';
 import { createGuess, getGuesses } from '../guessesModel';
 import { createNameTarget, INameTargetModel } from '../nameTargetModel';
 
@@ -15,10 +10,6 @@ const createANameTarget = async (): Promise<INameTargetModel> => {
 };
 
 describe('Guess Model', () => {
-  beforeAll(connect);
-  beforeEach(cleanData);
-  afterAll(disconnect);
-
   it('should create a guess', async () => {
     const nameTarget = await createANameTarget();
     const guess = await createGuess({

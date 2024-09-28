@@ -1,17 +1,8 @@
 import request from 'supertest';
-import {
-  connect,
-  cleanData,
-  disconnect
-} from '../../__helper__/mongodb.memory.test.helper';
 import app from '../../app';
 import { HttpStatus } from '../../utils/httpUtils';
 
 describe('Guess Controller', () => {
-  beforeAll(connect);
-  beforeEach(cleanData);
-  afterAll(disconnect);
-
   describe('when name target exists', () => {
     const correctName = 'The correct name';
     const incorrectName = 'The incorrect name';
