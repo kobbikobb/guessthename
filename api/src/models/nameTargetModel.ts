@@ -7,6 +7,7 @@ export interface INameTargetInput {
 }
 
 export interface INameTargetModel extends Document {
+    _id: Types.ObjectId;
     userId: string;
     title: string;
     name: string;

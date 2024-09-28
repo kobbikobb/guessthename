@@ -57,7 +57,7 @@ const postGuess = async (req: Request, res: Response): Promise<Response> => {
 
 const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
     return {
-        id: guess._id,
+        id: guess._id.toString(),
         userId: guess.userId,
         nameTargetId: guess.nameTargetId,
         name: guess.name

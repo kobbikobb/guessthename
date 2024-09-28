@@ -1,4 +1,4 @@
-import { model, Schema, Model, Document } from 'mongoose';
+import { model, Schema, Model, Types, Document } from 'mongoose';
 
 export interface ICreateGuessInput {
     userId: string;
@@ -16,6 +16,7 @@ export interface ICreateGuess {
 }
 
 export interface IGuessModel extends Document {
+    _id: Types.ObjectId;
     userId: string;
     nameTargetId: string;
     name: string;
