@@ -73,4 +73,4 @@ jobs:
           echo "Auto-merging Dependabot PR..."
           gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.AUTO_MERGE_SECRET }}
