@@ -1,0 +1,76 @@
+name: Build and Test
+
+on: [pull_request]
+
+jobs:
+
+  build-api:
+    
+    defaults:
+      run:
+        working-directory: api
+        
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x 
+      - run: npm ci
+      - run: npm run build
+      - run: npm run prettier
+      - run: npm run lint
+      - run: npm test
+  
+  build-frontend:
+    
+    defaults:
+      run:
+        working-directory: frontend
+        
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x 
+      - run: npm ci
+      - run: npm run build
+      - run: npm run prettier-check
+
+  build-worker:
+    
+    defaults:
+      run:
+        working-directory: worker
+        
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.x 
+      - run: npm ci
+      - run: npm run build
+      - run: npm run prettier
+      - run: npm run lint
+      - run: npm test
+  
+  dependabot-auto-merge:
+    name: 'Dependabot Auto-Merge'
+    needs: [build-api, build-frontend, build-worker]  # Ensure the builds jobs complete successfully first
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
+    steps:
+      - name: Enable auto-merge for Dependabot PRs
+        run: |
+          echo "Auto-merging Dependabot PR..."
+          gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
