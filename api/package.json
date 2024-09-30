@@ -48,7 +48,7 @@
     "mongodb-memory-server": "^10.0.1",
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
-    "supertest": "^6.3.3",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "typescript": "5.0.x"
   }
