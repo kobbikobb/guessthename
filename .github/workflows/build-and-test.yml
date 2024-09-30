@@ -66,6 +66,9 @@ jobs:
     name: 'Dependabot Auto-Merge'
     needs: [build-api, build-frontend, build-worker]  # Ensure the builds jobs complete successfully first
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
     steps:
       - name: Enable auto-merge for Dependabot PRs
