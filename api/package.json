@@ -28,7 +28,7 @@
     "express-rate-limit": "^7.4.0",
     "mongoose": "^8.7.0",
     "morgan": "^1.10.0",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.9.2",
     "winston": "^3.14.2"
   },
   "devDependencies": {
