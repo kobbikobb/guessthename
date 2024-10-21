@@ -50,6 +50,6 @@
     "prettier": "^3.3.3",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
-    "typescript": "5.0.x"
+    "typescript": "5.6.x"
   }
 }
