@@ -12,8 +12,7 @@
     "build": "rm -rf dist/ && tsc --project tsconfig.build.json",
     "start": "node dist/server.js",
     "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "prepare": "cd .. && husky install"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "Jakob Jónasson",
@@ -43,7 +42,6 @@
     "eslint-plugin-n": "^17.14.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-promise": "^7.2.1",
-    "husky": "^9.1.7",
     "jest": "^29.7.0",
     "mongodb-memory-server": "^10.1.2",
     "nodemon": "^3.1.9",
