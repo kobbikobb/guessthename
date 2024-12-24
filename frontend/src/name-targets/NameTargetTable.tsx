@@ -1,31 +1,34 @@
 import { useMemo } from 'react';
 import Table from '../common/Table';
-import { Link } from 'react-router-dom';
+import { useLinkColumn, useColumn } from '../common/userColumns';
 
-type Props = {
-  data: Array<Object>;
+type NameTarget = {
+  title: string;
+  createdAt: string;
 };
 
-export default function NameTargetTable({ data }: Props) {
+type NameTargetTableProps = {
+  data: NameTarget[];
+};
+
+export default function NameTargetTable({ data }: NameTargetTableProps) {
+  const titleColumn = useLinkColumn({
+    header: 'Title',
+    accessorKey: 'title',
+    createLink(id) {
+      return `/guess?nameTargetId=${id}`;
+    }
+  });
+  const createdAtColumn = useColumn({
+    header: 'Created at',
+    accessorKey: 'createdAt'
+  });
+
   const columns = useMemo(
     () => [
       {
-        Header: 'Name targets',
-        columns: [
-          {
-            Header: 'Title',
-            accessor: 'title',
-            Cell: (e: { value: string; row: { original: { id: string } } }) => (
-              <Link to={`/guess?nameTargetId=${e.row.original.id}`}>
-                {e.value}
-              </Link>
-            )
-          },
-          {
-            Header: 'Created at',
-            accessor: 'createdAt'
-          }
-        ]
+        header: 'Name targets',
+        columns: [titleColumn, createdAtColumn]
       }
     ],
     []
