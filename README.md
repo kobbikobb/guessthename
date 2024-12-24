@@ -5,6 +5,12 @@ Guess the name of a child or pet to be named.
 - DockerMachine: https://docs.docker.com/engine/install/
 - Grep: brew install grep (mac)
 
+## Quick Start with Rancher Desktop and helm
+- [Install Rancher Desktop](docs/RANCHER-DESKTOP.md)
+- [Install the Helm Charts](https://helm.sh/docs/intro/install)
+- [Install Ingress Controller and start port forwarding](docs/RANCHER-DESKTOP.md)
+- Navigate to: http://localhost:8080/
+
 ## Host
 - [Host on Rancher-Desktop](docs/RANCHER-DESKTOP.md)
 - [Host on Minikube](docs/MINIKUBE.md)

@@ -12,8 +12,7 @@
     "build": "rm -rf dist/ && tsc --project tsconfig.build.json",
     "start": "node dist/server.js",
     "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "prepare": "cd .. && husky install"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "Jakob Jónasson",
@@ -22,34 +21,33 @@
     "@types/express": "^5.0.0",
     "@types/morgan": "^1.9.9",
     "cors": "^2.8.5",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "express-async-errors": "^3.1.1",
     "express-mongo-sanitize": "^2.2.0",
-    "express-rate-limit": "^7.4.0",
-    "mongoose": "^8.7.1",
+    "express-rate-limit": "^7.4.1",
+    "mongoose": "^8.9.0",
     "morgan": "^1.10.0",
     "ts-node": "^10.9.2",
-    "winston": "^3.14.2"
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
-    "@types/jest": "^27.0.3",
-    "@types/supertest": "^2.0.12",
+    "@types/jest": "^29.5.14",
+    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-n": "^17.11.1",
+    "eslint-plugin-n": "^17.14.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-promise": "^7.1.0",
-    "husky": "^9.1.6",
+    "eslint-plugin-promise": "^7.2.1",
     "jest": "^29.7.0",
     "mongodb-memory-server": "^10.1.2",
-    "nodemon": "^3.1.7",
-    "prettier": "^3.3.3",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
-    "typescript": "5.0.x"
+    "typescript": "5.7.x"
   }
 }
