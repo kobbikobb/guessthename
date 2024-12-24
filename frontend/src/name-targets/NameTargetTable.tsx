@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import Table from '../common/Table';
-import { useLinkColumn, useColumn } from '../common/userColumns';
+import { useLinkColumn, useColumn } from '../common/useColumns';
 
 type NameTarget = {
   title: string;
@@ -19,6 +19,7 @@ export default function NameTargetTable({ data }: NameTargetTableProps) {
       return `/guess?nameTargetId=${id}`;
     }
   });
+
   const createdAtColumn = useColumn({
     header: 'Created at',
     accessorKey: 'createdAt'
