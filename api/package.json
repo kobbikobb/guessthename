@@ -12,8 +12,7 @@
     "build": "rm -rf dist/ && tsc --project tsconfig.build.json",
     "start": "node dist/server.js",
     "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "prepare": "cd .. && husky install"
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "Jakob Jónasson",
