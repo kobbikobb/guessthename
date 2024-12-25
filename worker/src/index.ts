@@ -13,7 +13,6 @@ const app = Consumer.create({
         if (action != undefined) {
             console.log(`Received an action ${action.name}`);
         }
-
         console.log(`Message handled: ${message.Body}`);
     }
 });
