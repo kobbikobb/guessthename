@@ -1,6 +1,6 @@
 import http from 'http';
-import app from './app';
 import mongoose from 'mongoose';
+import app from './app';
 import { getMongoDbUriFromEnv } from './utils/envUtils';
 
 const connectToDatabase = async (): Promise<void> => {
