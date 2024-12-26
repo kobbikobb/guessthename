@@ -8,21 +8,27 @@ import GuessRoute from './guesses/GuessRoute';
 import NameTargetOverview from './name-targets/NameTargetOverview';
 
 const App = () => {
-  const userId = getUserFingerprint();
+    const userId = getUserFingerprint();
 
-  return (
-    <>
-      <Navigation />
-      <Container style={{ marginTop: 50 }}>
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<NameTargetOverview userId={userId} />} />
-            <Route path="guess" element={<GuessRoute userId={userId} />} />
-          </Routes>
-        </HashRouter>
-      </Container>
-    </>
-  );
+    return (
+        <>
+            <Navigation />
+            <Container style={{ marginTop: 50 }}>
+                <HashRouter>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<NameTargetOverview userId={userId} />}
+                        />
+                        <Route
+                            path="guess"
+                            element={<GuessRoute userId={userId} />}
+                        />
+                    </Routes>
+                </HashRouter>
+            </Container>
+        </>
+    );
 };
 
 export default App;
