@@ -42,6 +42,7 @@ jobs:
       - run: npm run build
       - run: npm run prettier
       - run: npm run lint
+      - run: npm test
   build-worker:
     
     defaults:
