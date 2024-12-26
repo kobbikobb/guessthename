@@ -27,5 +27,4 @@ const startServer = async (): Promise<void> => {
     });
 };
 
-// eslint-disable-next-line
 startServer();
