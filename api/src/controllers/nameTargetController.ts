@@ -61,21 +61,15 @@ const toDtoList = (
     };
 };
 
-const createNameTarget = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
+const createNameTarget = async (req: Request, res: Response): Promise<void> => {
     const inputGuess = parseNameTargetFromBody(req);
     const createdGuess = await nameTargetModel.createNameTarget(inputGuess);
-    return res.status(HttpStatus.OK).json(toDtoCreate(createdGuess));
+    res.status(HttpStatus.OK).json(toDtoCreate(createdGuess));
 };
 
-const getNameTargets = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
+const getNameTargets = async (req: Request, res: Response): Promise<void> => {
     const nameTargets = await nameTargetModel.getNameTargets();
-    return res.status(HttpStatus.OK).json({
+    res.status(HttpStatus.OK).json({
         results: nameTargets.map((target) => toDtoList(target))
     });
 };

@@ -49,10 +49,10 @@ const toCreatedGuessDto = (
     };
 };
 
-const postGuess = async (req: Request, res: Response): Promise<Response> => {
+const postGuess = async (req: Request, res: Response): Promise<void> => {
     const guessInput = parseGuessFromBody(req);
     const createdGuess = await addGuess(guessInput);
-    return res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
+    res.status(HttpStatus.OK).json(toCreatedGuessDto(createdGuess));
 };
 
 const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
@@ -64,13 +64,13 @@ const toGuessesDto = (guess: guessesModel.IGuessModel): IGuessDto => {
     };
 };
 
-const getGuesses = async (req: Request, res: Response): Promise<Response> => {
+const getGuesses = async (req: Request, res: Response): Promise<void> => {
     const nameTargetId = req.query.nameTargetId as string;
     if (nameTargetId === undefined) {
         throw badRequest('The parameter nameTargetId is required.');
     }
     const guesses = await guessesModel.getGuesses(nameTargetId);
-    return res.status(HttpStatus.OK).json({
+    res.status(HttpStatus.OK).json({
         results: guesses.map((guess) => toGuessesDto(guess))
     });
 };
