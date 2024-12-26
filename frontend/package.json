@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "./env.sh && webpack serve --config webpack.config.js --env env=development",
     "build": "webpack --config webpack.config.js --env env=production",
-    "prettier": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --write",
-    "prettier-check": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --list-different"
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --list-different",
+    "prettier:fix": "prettier --config .prettierrc 'src/**/*.ts|src/**/*.tsx' --write",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "author": "Jakob Jónasson",
   "license": "ISC",
@@ -19,7 +21,8 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "typescript-eslint": "^8.18.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
@@ -29,13 +32,22 @@
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
     "@babel/runtime": "^7.26.0",
+    "@eslint/js": "^9.17.0",
     "@types/clientjs": "^0.2.2",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
     "babel-loader": "^9.2.1",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.7.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-promise": "^7.2.1",
     "html-webpack-plugin": "^5.6.3",
     "prettier": "^3.4.2",
     "style-loader": "^4.0.0",
