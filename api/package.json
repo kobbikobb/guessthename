@@ -34,7 +34,7 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.2",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.24.0",
     "@typescript-eslint/parser": "^8.20.0",
     "eslint": "^9.20.0",
     "eslint-config-prettier": "^10.0.1",
