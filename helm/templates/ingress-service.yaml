@@ -11,14 +11,14 @@ spec:
     - http:
         paths:
           - path: /(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: frontend-service
                 port:
                   number: 3001
           - path: /api/(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: api-service
