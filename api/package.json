@@ -25,7 +25,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^8.2.2",
     "mongoose": "^8.22.1",
-    "morgan": "^1.10.1",
+    "morgan": "^1.11.0",
     "ts-node": "^10.9.2",
     "winston": "^3.17.0"
   },
