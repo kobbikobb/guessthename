@@ -24,7 +24,7 @@
     "express-async-errors": "^3.1.1",
     "express-mongo-sanitize": "^2.2.0",
     "express-rate-limit": "^8.7.0",
-    "mongoose": "^8.24.1",
+    "mongoose": "^8.24.7",
     "morgan": "^1.12.1",
     "ts-node": "^10.9.2",
     "winston": "^3.17.0"
